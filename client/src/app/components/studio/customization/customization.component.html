@@ -1,0 +1,146 @@
+<div *ngIf="user" class="dashboard-wrapper">
+    <div class="row m-0 p-0 dashboard-header">
+        <div class="col-auto header-title">
+            <h1>Channel customization</h1>
+        </div>
+    </div>
+    <div class="row m-0 customization-navigation d-flex justify-content-between">
+        <div class="col-auto p-0 nav-buttons d-flex align-items-center">
+            <div class="row indiv-buttons m-0 p-0">
+                <div class="col-auto branding" (click)="brandingClicked()">
+                    <div class="row m-0 p-0" [ngStyle]="{'color': branding? '#3ea6ff' : '#aaaaaa'}">
+                        Branding
+                    </div>
+                    <div class="row m-0 p-0 pt-3 d-flex align-items-end" style="width: 100%; height: 30%">
+                        <div *ngIf="branding" class="col p-0" style="background-color: #3ea6ff; width: 100%; height: 3px;"></div>
+                    </div>
+                </div>
+                <div class="col-auto basic-info" (click)="basicInfoClicked()">
+                    <div class="row m-0 p-0" [ngStyle]="{'color': basicInfo? '#3ea6ff' : '#aaaaaa'}">
+                        Basic info
+                    </div>
+                    <div class="row m-0 p-0 pt-3 d-flex align-items-end" style="width: 100%; height: 30%">
+                        <div *ngIf="basicInfo" class="col p-0" style="background-color: #3ea6ff; width: 100%; height: 3px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-auto p-0 cofirmation-buttons d-flex align-items-center">
+            <div class="row indiv-confirm-buttons m-0 p-0">
+                <div class="col-auto view-channel d-flex align-items-center" (click)="viewChannelClicked()">
+                    VIEW CHANNEL
+                </div>
+                <div class="col-auto cancel d-flex align-items-center">
+                    <button type="button" class="button-cancel" [disabled]="!activateWhenInput()" (click)="cancelClicked()">CANCEL</button>
+                </div>
+                <div class="col-auto publish-button">
+                    <button type="button" class="btn btn-primary button-publish" [disabled]="!activateWhenInput()" (click)="publishClicked()">
+                        PUBLISH
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="branding" class="branding-page-wrapper m-0">
+        <div class="row m-0 p-0 branding-page">
+            <div class="col p-0">
+                <div class="row m-0 profile-picture">
+                    <div class="col p-0 section-container">
+                        <div class="row m-0 p-0 section-title">
+                            Profile picture
+                        </div>
+                        <div class="row m-0 p-0 section-message">
+                            Your profile picture will appear where your channel is presented on YouTube, like next to your videos and comments
+                        </div>
+                        <div class="row p-0 section-body">
+                            <div class="col-auto p-0 profile-view-section">
+                                <img [src]="profImageSource" width="140px" height="140px" class="profile-image-style" (error)="changeProfileSource($event)">
+                            </div>
+                            <div class="col-auto p-0 des-prompt-buttons">
+                                <div class="row m-0 p-0 des-prompt">
+                                    It&#39;s recommended to use a picture that&#39;s at least 98 x 98 pixels and 4MB or less. Use a PNG or GIF (no animations) file. Make sure your picture follows the YouTube Community Guidelines.
+                                </div>
+                                <div class="row p-0 des-buttons">
+                                    <div class="col-auto change-button">
+                                        <label for="file-input">
+                                            CHANGE
+                                        </label>
+                                        <input id="file-input" type="file"  (change)="channelImageSelected($event)" multiple="false" accept="image/*"/>
+                                    </div>
+                                    <div class="col-auto remove-button" (click)="removeChannelImage()">
+                                        REMOVE
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row m-0 banner-image">
+                    <div class="col p-0 section-container">
+                        <div class="row m-0 p-0 section-title">
+                            Banner image
+                        </div>
+                        <div class="row m-0 p-0 section-message">
+                            This image will appear across the top of your channel
+                        </div>
+                        <div class="row p-0 section-body">
+                            <div class="col-auto p-0 banner-image-section">
+                                <img [src]="bannerImageSource" class="image-banner" (error)="changeBannerSource($event)">
+                            </div>
+                            <div class="col-auto p-0 des-prompt-buttons">
+                                <div class="row m-0 p-0 des-prompt">
+                                    For the best results on all devices, use an image that&#39;s at least 2048 x 1152 pixels and 6MB or less.
+                                </div>
+                                <div class="row p-0 des-buttons">
+                                    <div class="col-auto change-button">
+                                        <ngx-file-drop [multiple]="false" dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)" contentClassName="my-style" dropZoneClassName="my-style" accept="image/*">
+                                            <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+                                              <div (click)="openFileSelector()">CHANGE</div>
+                                            </ng-template>
+                                        </ngx-file-drop>
+                                    </div>
+                                    <div class="col-auto remove-button" (click)="removeBannerImage()">
+                                        REMOVE
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="basicInfo" class="basic-info-wrapper m-0">
+        <div class="row m-0 p-0 basic-info-page">
+            <div class="col edit-details-section">
+                <div class="row m-0 p-0 edit-details-header">
+                    Channel name and description
+                </div>
+                <div class="row m-0 edit-details-message">
+                    Choose a channel name that represents you and your content. Changes made to your name and picture will be visible on your YouTube channel.
+                </div>
+                <form class="form input-fields">
+                    <div class="form-floating email-input">
+                        <input 
+                            name = "email"
+                            type="email" 
+                            class="form-control" 
+                            id="floatingEmail" 
+                            placeholder="Password"
+                            [(ngModel)]="channelName"
+                            [formControl]="channelNameControl"
+                            [class.is-invalid]="channelNameControl.invalid"
+                            [class.is-valid]="channelNameControl.valid && channelName !== user.channelName">
+                        <label for="floatingEmail">Name</label>
+                    </div>
+                </form>
+                <div class="row p-0 channel-description">
+                    <div class="form-floating textarea-container p-0">
+                        <textarea [(ngModel)]="channelDescription" class="form-control tweet-box" placeholder="Leave a comment here" style="min-height: 140px"></textarea>
+                        <label for="floatingTextarea2" class="description-textarea">Description</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+.list-container {
+    max-width: min(1000px, calc(90% - 20px));
+    margin: auto;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+@media (max-width:660px) {
+    .list-container {
+        max-width: 100%;
+        padding: 0px 10px;
+    }
+}
+
+.trending-title {
+	font-size: 18px;
+	font-family: 'Youtube Sans', 'Arial';
+	font-weight: 600;
+	color: white;
+	line-height: 18px;
+	padding: 0px;
+	padding-top: 10px;
+	margin-bottom: 16px;
+}
+
+

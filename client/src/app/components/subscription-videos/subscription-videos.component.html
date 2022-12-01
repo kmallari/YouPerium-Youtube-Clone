@@ -1,0 +1,98 @@
+
+
+<div
+  class="adjuster"
+  infiniteScroll
+  [infiniteScrollDistance]="1"
+  [infiniteScrollThrottle]="150"
+  (scrolled)="onScroll()"
+>
+  <p *ngIf="videos.today.length !== 0" class="timerange">Today</p>
+  <app-videos-grid
+    *ngIf="videos.today.length !== 0"
+    [videos]="videos.today"
+    type="subscriptions"
+  ></app-videos-grid>
+  <hr *ngIf="videos.today.length !== 0" class="bottom-border">
+
+  <p *ngIf="videos.thisWeek.length !== 0" class="timerange">This week</p>
+  <app-videos-grid
+    *ngIf="videos.thisWeek.length !== 0"
+    [videos]="videos.thisWeek"
+    type="subscriptions"
+  ></app-videos-grid>
+  <hr *ngIf="videos.thisWeek.length !== 0" class="bottom-border">
+
+  <p *ngIf="videos.thisMonth.length !== 0" class="timerange">This Month</p>
+  <app-videos-grid
+    *ngIf="videos.thisMonth.length !== 0"
+    [videos]="videos.thisMonth"
+    type="subscriptions"
+  ></app-videos-grid>
+  <hr *ngIf="videos.thisMonth.length !== 0" class="bottom-border">
+
+  <p *ngIf="videos.older.length !== 0" class="timerange">Older</p>
+  <app-videos-grid
+    [videos]="videos.older"
+    type="subscriptions"
+    *ngIf="loggedIn"
+  ></app-videos-grid>
+  <hr *ngIf="videos.older.length !== 0" class="bottom-border">
+
+  <div *ngIf="!loggedIn" class="not-logged-in">
+    <div class="icon">
+      <svg
+        version="1.0"
+        xmlns="http://www.w3.org/2000/svg"
+        width="146.000000pt"
+        height="131.000000pt"
+        viewBox="0 0 146.000000 131.000000"
+        preserveAspectRatio="xMidYMid meet"
+      >
+        <g
+          transform="translate(0.000000,131.000000) scale(0.100000,-0.100000)"
+          fill="#000000"
+          stroke="none"
+        >
+          <path
+            style="fill: white"
+            d="M370 1275 l0 -35 360 0 360 0 0 35 0 35 -360 0 -360 0 0 -35z"
+          />
+          <path
+            style="fill: white"
+            d="M157 1093 c-4 -3 -7 -21 -7 -40 l0 -33 578 2 577 3 0 35 0 35 -571 3
+c-314 1 -574 -1 -577 -5z"
+          />
+          <path
+            style="fill: white"
+            d="M10 445 l0 -435 720 0 720 0 0 435 0 435 -720 0 -720 0 0 -435z
+m1370 0 l0 -355 -650 0 -650 0 0 355 0 355 650 0 650 0 0 -355z"
+          />
+          <path
+            style="fill: white"
+            d="M580 450 c0 -144 3 -210 11 -210 20 0 351 202 342 210 -12 10 -343
+210 -348 210 -3 0 -5 -94 -5 -210z"
+          />
+        </g>
+      </svg>
+    </div>
+    <h5 class="mt-3">Don’t miss new videos</h5>
+    <p class="mt-3">
+      Sign in to see updates from your favorite YouTube channels.
+    </p>
+    <div class="row sign-in-button m-0" (click)="onSignInClicked()">
+      <div class="col-auto p-0 acc-icon">
+        <svg width="24px" height="24px">
+          <g class="style-scope yt-icon">
+            <path d="M12,2C6.48,2,2,6.48,2,12c0,5.52,4.48,10,10,10s10-4.48,10-10C22,6.48,17.52,2,12,2z M12,3c4.96,0,9,4.04,9,9 c0,1.42-0.34,2.76-0.93,3.96c-1.53-1.72-3.98-2.89-7.38-3.03C14.57,12.6,16,10.97,16,9c0-2.21-1.79-4-4-4C9.79,5,8,6.79,8,9 c0,1.97,1.43,3.6,3.31,3.93c-3.4,0.14-5.85,1.31-7.38,3.03C3.34,14.76,3,13.42,3,12C3,7.04,7.04,3,12,3z M9,9c0-1.65,1.35-3,3-3 s3,1.35,3,3c0,1.65-1.35,3-3,3S9,10.65,9,9z M12,21c-3.16,0-5.94-1.64-7.55-4.12C6.01,14.93,8.61,13.9,12,13.9 c3.39,0,5.99,1.03,7.55,2.98C17.94,19.36,15.16,21,12,21z" class="style-scope yt-icon"></path>
+          </g>
+        </svg>
+      </div>
+      <div class="col sign-in-text d-flex align-items-center">
+        SIGN IN
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-playlist-modal></app-playlist-modal>

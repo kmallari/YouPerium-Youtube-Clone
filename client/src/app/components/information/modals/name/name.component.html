@@ -1,0 +1,47 @@
+<div class="modal-header">
+    <h1>Name</h1>
+</div>
+<div class="modal-body">
+    <div class="row message">
+        Changes to your name will be reflected on your Youtube account
+    </div>
+    <form class="form input-fields">
+        <div class="form-floating firstname-input">
+            <input 
+                name ="firstname"
+                type="text" 
+                class="form-control" 
+                id="floatingFirstName" 
+                [placeholder]="user.firstName"
+                [formControl]="firstName"
+                [class.is-invalid]="invalid_input('firstname')"
+                [class.is-valid]="firstName.value !== '' && !invalid_input('firstname')">
+            <label for="floatingFirstName">First name</label>
+            <div class="firstname-invalidated m-0">
+                invalid first name
+            </div>
+        </div>
+        <div class="form-floating lastname-input">
+            <input 
+                name = "lastname"
+                type="text" 
+                class="form-control" 
+                id="floatingLastName" 
+                [placeholder]="user.lastName"
+                [formControl]="lastName"
+                [class.is-invalid]="invalid_input('lastname')"
+                [class.is-valid]="lastName.value !== '' && !invalid_input('lastname')">
+            <label for="floatingLastName">Last name</label>
+            <div class="lastname-invalidated error-message m-0">
+                invalid last name
+            </div>
+        </div>
+        <div class="col d-flex justify-content-end">
+            <button 
+                (click)="onSaveClicked()" 
+                class="btn btn-primary save-button" [disabled]="disabler()">
+                Save
+            </button>
+        </div>
+    </form>
+</div>

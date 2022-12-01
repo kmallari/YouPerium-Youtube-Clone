@@ -1,0 +1,63 @@
+
+.timerange {
+  margin-left: 1rem;
+  color: white;
+  font-family: "Roboto";
+  background-color: transparent;
+}
+
+.not-logged-in {
+    color: white;
+    font-family: "Roboto";
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: min(20vh, 150px)
+}
+
+p.mt-3 {
+  text-align: center;
+}
+
+
+
+.sign-in-button {
+	border: 1px solid #3ea6ff;
+	padding: 5px 11px;
+}
+
+.yt-icon {
+	stroke: #3ea6ff;
+	stroke-width: 1;
+}
+
+.sign-in-button:hover {
+	cursor : pointer;
+}
+
+.sign-in-text {
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	font-weight: 500;
+	color: #3ea6ff;
+	padding: 0;
+	margin-left: 8px;
+}
+
+.acc-icon {
+	max-height: 24px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.bottom-border {
+  color: rgba(255,255,255,0.7);
+  margin: 30px 20px;
+}
+
+.adjuster {
+  min-height: 100vh;
+  margin-top: 30px;
+}

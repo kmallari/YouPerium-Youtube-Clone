@@ -1,0 +1,163 @@
+.modal-dialog {
+    max-width: 970px;
+    min-widtH: 300px
+}
+
+.modal-content {
+    border-radius: 10px !important; 
+    background-color: #282828;
+}
+
+.modal-header {
+    padding: 16px 30px;
+    border-bottom: 0.4px solid #5C5C5C;
+}
+
+.modal-title {
+    color: white;
+    font-family: 'Youtube Sans', 'Roboto';
+    font-weight: 600;
+    font-size: 21.4px;
+}
+
+.icon {
+    color: #BCBCBC;
+}
+
+.modal-body {
+    min-height: 582px;
+    align-items: center;
+}
+
+.modal-footer {
+    min-height: 76px;
+}
+
+.upload-icon {
+    font-size: 72px;
+    color: #BCBCBC;
+    width: 72px;
+    height: 72px;
+    margin: auto;
+}
+
+.icon-container {
+    width: 140px;
+    height: 140px;
+    display: flex;
+    margin: auto;
+    background-color: #202020;
+    border-radius: 50%;
+    margin-top: 130px;
+}
+
+.modal-text-main {
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: 'Roboto';
+    margin: auto;
+    text-align: center;
+    margin-top: 32px;
+}
+
+.modal-text {
+    color: #BCBCBC;
+    font-size: 14px;
+    font-weight: 300;
+    font-family: 'Roboto';
+    margin: auto;
+    text-align: center;
+    margin-top: 4px;
+}
+
+.file-button {
+    background-color: rgb(62,166,255);
+    color: #282828;
+    padding: 8px 24px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Roboto';
+    border-radius: 2px;
+    border: none;
+    margin: auto;
+}
+
+.btn-container {
+    display: flex;
+    margin: auto;
+    margin-top: 30px;
+}
+
+
+input[type="file"] {
+    display: none;
+}
+
+.hide-btn {
+    visibility: hidden;
+    padding: 0px !important;
+    background: none;
+}
+
+.container-pulse {
+    background-color: rgb(62,166,255);
+    border-radius: 50%;
+    margin-top: 150px;
+    animation: beat 2s infinite;
+}
+
+.container-pulse-2 {
+    background-color: rgb(255, 62, 62);
+    border-radius: 50%;
+    margin-top: 150px;
+    animation: beat2 2s infinite;
+}
+
+.uploading-icon {
+    font-size: 72px;
+    color: #282828;
+    width: 72px;
+    height: 72px;
+    margin: auto;
+}
+
+@keyframes beat {
+	0% {
+		transform: scale(0.9);
+		box-shadow: 0 0 0 0 rgba(62,166,255, 0.7);
+	}
+
+	80% {
+		transform: scale(1);
+		box-shadow: 0 0 0 10px rgba(62,166,255, 0);
+	}
+
+	100% {
+		transform: scale(0.9);
+		box-shadow: 0 0 0 0 rgba(62,166,255, 0);
+	}
+}
+
+@keyframes beat2 {
+	0% {
+		transform: scale(0.9);
+		box-shadow: 0 0 0 0 rgba(255, 62, 62, 0.7);
+	}
+
+	80% {
+		transform: scale(1);
+		box-shadow: 0 0 0 10px rgba(255, 62, 62, 0);
+	}
+
+	100% {
+		transform: scale(0.9);
+		box-shadow: 0 0 0 0 rgba(255, 62, 62, 0);
+	}
+}
+
+

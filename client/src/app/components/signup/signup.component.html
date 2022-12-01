@@ -1,0 +1,202 @@
+<div class="wrapper d-flex justify-content-center align-items-center">
+    <div class="row m-0 p-0">
+        <div class="col m-0 p-0">
+            <div class="card">
+                <div class="row m-0 p-0 row-holder">
+                    <div class="col-7 signup-form">
+                        <div class="card-header">
+                            <div class="row m-0 align-items-center">
+                                <div class="col p-0 d-flex justify-content-start">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/YouTube_play_button_icon_%282013%E2%80%932017%29.svg/1280px-YouTube_play_button_icon_%282013%E2%80%932017%29.svg.png" height="24px">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <div class="row m-0 p-0">
+                                <div class="create-account">
+                                    Create your Youtube Account
+                                </div>
+                                <div class="create-account-message">
+                                    to continue to YouTube
+                                </div>
+                            </div>
+                            <form class="form input-fields" [formGroup]="myGroup">
+                                <div class="row m-0 p-0 d-flex justify-content-between">
+                                    <div class="col-auto p-0">
+                                        <div class="form-floating m-0 firstName-input">
+                                            <input 
+                                                name ="firstName"
+                                                type="text" 
+                                                class="form-control" 
+                                                id="floatingFirstName" 
+                                                placeholder="syyan"
+                                                formControlName="firstName"
+                                                [class.is-invalid]="firstName?.invalid && firstName?.touched"
+                                                [class.is-valid]="firstName?.valid"
+                                                [class.invalid-firstname]="invalid_input('firstname')"
+                                                [class.touched]="firstName?.touched && !invalid_input('firstname')">
+                                            <label for="floatingFirstName">First name</label>
+                                            <div class="choose-firstname p-0 m-0">
+                                                First name required.
+                                            </div>
+                                            <div class="firstname-invalidated p-0 m-0">
+                                                invalid first name
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto p-0">
+                                        <div class="form-floating m-0 lastName-input">
+                                            <input 
+                                                name ="lastName"
+                                                type="text" 
+                                                class="form-control" 
+                                                id="floatingLastName" 
+                                                placeholder="syyan"
+                                                formControlName="lastName"
+                                                [class.is-invalid]="lastName?.invalid && lastName?.touched"
+                                                [class.is-valid]="lastName?.valid"
+                                                [class.invalid-lastname]="invalid_input('lastname')"
+                                                [class.touched]="lastName?.touched && !invalid_input('lastname')">
+                                            <label for="floatingLastName">Last name</label>
+                                            <div class="choose-lastname error-message p-0 m-0">
+                                                Last name required.
+                                            </div>
+                                            <div class="lastname-invalidated error-message p-0 m-0">
+                                                invalid last name
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-floating username-input">
+                                    <input 
+                                        name ="username"
+                                        type="text" 
+                                        class="form-control" 
+                                        id="floatingUsername" 
+                                        placeholder="syyan"
+                                        formControlName="userName"
+                                        [class.is-invalid]="userName?.invalid && (errorCheck('username') || userName?.touched)"
+                                        [class.is-valid]="userName?.valid"
+                                        [class.username-exists]="user_exists('username')"
+                                        [class.invalid-username]="invalid_input('username')"
+                                        [class.touched]="userName?.touched && !invalid_input('username') && !user_exists('username')">
+                                    <label for="floatingUsername">Your username</label>
+                                    <div class="user-exists error-message p-0 m-0">
+                                        Username has already been taken.
+                                    </div>
+                                    <div class="choose-username error-message p-0 m-0">
+                                        username required.
+                                    </div>
+                                    <div class="username-invalidated error-message p-0 m-0">
+                                        invalid username
+                                    </div>
+                                </div>
+                                <div class="form-floating email-input">
+                                    <input 
+                                        name = "email"
+                                        type="email" 
+                                        class="form-control" 
+                                        id="floatingEmail" 
+                                        placeholder="Password"
+                                        formControlName="userEmail"
+                                        [class.is-invalid]="userEmail?.invalid && userEmail?.touched"
+                                        [class.is-valid]="userEmail?.valid"
+                                        [class.useremail-exists]="user_exists('email')"
+                                        [class.invalid-email]="invalid_input('email')"
+                                        [class.touched]="userEmail?.touched && !invalid_input('email') && !user_exists('email')">
+                                    <label for="floatingEmail">Your email address</label>
+                                    <div class="email-exists error-message p-0 m-0">
+                                        Email has already been taken.
+                                    </div>
+                                    <div class="choose-email error-message p-0 m-0">
+                                        email required.
+                                    </div>
+                                    <div class="email-invalidated error-message p-0 m-0">
+                                        invalid email
+                                    </div>
+                                </div>
+
+                                <div class="form-floating birthday-input">
+                                    <input 
+                                        name = "birthday"
+                                        type="date" 
+                                        class="form-control" 
+                                        id="floatingBirthday" 
+                                        placeholder="Password"
+                                        formControlName="BirthDate"
+                                        [class.is-invalid]="disabler() && BirthDate?.touched"
+                                        [class.is-valid]="!disabler()">
+                                    <label for="floatingBirthday">Birthdate</label>
+                                </div>
+                                <div class="row p-0 password-related d-flex justify-content-between">
+                                    <div class="col-auto p-0">
+                                        <div class="form-floating m-0 password-input">
+                                            <input 
+                                                name ="password"
+                                                type="password" 
+                                                class="form-control" 
+                                                id="floatingPassword" 
+                                                placeholder="syyan"
+                                                formControlName="password"
+                                                [class.is-invalid]="password?.invalid && password?.touched"
+                                                [class.is-valid]="password?.valid"
+                                                [class.invalid-password]="invalid_input('password')"
+                                                [class.touched]="password?.touched && !invalid_input('password')">
+                                            <label for="floatingPassword">password</label>
+                                            <div class="choose-password error-message p-0 m-0">
+                                                password required.
+                                            </div>
+                                            <div class="password-invalidated error-message p-0 m-0">
+                                                invalid password
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto p-0">
+                                        <div class="form-floating m-0 confirm-input">
+                                            <input 
+                                                name ="confirm"
+                                                type="password" 
+                                                class="form-control" 
+                                                id="floatingConfirm" 
+                                                placeholder="syyan"
+                                                formControlName="confirmPassword"
+                                                [class.is-invalid]="confirmPassword?.invalid && (confirmPassword?.touched || (confirmPassword?.value !== password?.value))"
+                                                [class.is-valid]="confirmPassword?.valid && (confirmPassword?.value === password?.value)"
+                                                [class.invalid-confirmPassword]="confirmPassword?.value !== password?.value && confirmPassword?.value !== ''"
+                                                [class.touched]="confirmPassword?.touched && confirmPassword?.invalid">
+                                            <label for="floatingConfirm">confirm</label>
+                                            <div class="choose-confirm-password error-message p-0 m-0">
+                                                password confirmation required.
+                                            </div>
+                                            <div class="confirm-password-invalidated error-message p-0 m-0">
+                                                passwords do not match.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="row m-0 d-flex justify-content-between mt-auto account-buttons">
+                                <div class="col-auto p-0 d-flex justify-content-center align-items-center">
+                                    <div class="create-account-btn px-2 d-flex align-items-center" (click)="signInInstead()">
+                                        Sign in instead
+                                    </div>
+                                </div>
+                                <div class="col-auto p-0">
+                                    <button 
+                                        (click)="signup()" 
+                                        class="btn btn-primary login-button"
+                                        [disabled]="disabler() || !myGroup.controls.firstName.valid || !myGroup.controls.lastName.valid || !myGroup.controls.userName.valid || !myGroup.controls.userEmail.valid || !myGroup.controls.password.valid || !myGroup.controls.confirmPassword.valid">
+                                        sign up
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-5 p-0 signup image d-flex justify-content-center align-items-center">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2991/2991241.png" width="175px" height="175px">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,57 @@
+.modal-body {
+    padding: 0;
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-bottom: 24px;
+}
+
+h1 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.message {
+    margin: 0;
+    padding-bottom: 24px;
+    margin-top: 24px;
+    border-bottom: 1px solid #1e1e1e;
+}
+
+.image {
+    margin: 0;
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+.image-itself {
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+    border: 1px solid #0782d0;
+    padding: 0;
+}
+
+.save-button {
+    background-color: #1a73e8;
+    font-weight: 500;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: .875rem;
+}
+
+.button {
+    margin: 0;
+    margin-top: 24px;
+}
+
+.save-button:disabled {
+    background-color: #e7e8e8;
+    border-color: #e7e8e8;
+    color: #a7a9aa;
+}
+
+.upload-button {
+    background-color: transparent;
+    color : #0782d0;
+    border-radius: 8px;
+    border: 2px dashed #0782d0;
+}

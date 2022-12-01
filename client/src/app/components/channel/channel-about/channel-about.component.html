@@ -1,0 +1,21 @@
+<div class="row about-wrapper">
+    <div *ngIf="user" class="col-8 main-container">
+        <div class="row descritption-container">
+            Description
+        </div>
+        <div class="row desc">
+            {{user.channelDescription}}
+        </div>
+    </div>
+    <div *ngIf="user" class="col-4 stats-container">
+        <div class="row m-0 stats-title">
+            Stats
+        </div> 
+        <div  class="row m-0">
+            joined {{user.createdAt | date}}
+        </div>
+        <div  class="row m-0">
+            {{user.totalViews}} views
+        </div>
+    </div>
+</div>

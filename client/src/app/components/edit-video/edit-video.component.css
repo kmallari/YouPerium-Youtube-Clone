@@ -1,0 +1,238 @@
+.modal-dialog {
+    max-width: 970px;
+    min-widtH: 300px
+}
+
+.modal-content {
+    border-radius: 10px !important; 
+    background-color: #282828;
+}
+
+.modal-header {
+    padding: 16px 30px;
+    border-bottom: 0.4px solid #5C5C5C;
+}
+
+.modal-title {
+    color: white;
+    font-family: 'Youtube Sans', 'Roboto';
+    font-weight: 600;
+    font-size: 21.4px;
+}
+
+.icon {
+    color: #BCBCBC;
+}
+
+.modal-body {
+    min-height: 582px;
+    align-items: center;
+}
+
+.modal-footer {
+    min-height: 76px;
+}
+
+.modal-body-edit {
+    min-height: 492px;
+    max-height: 492px;
+    align-items: center;
+    margin: 12px 14px;
+    overflow-y: scroll;
+}
+@media (max-width: 760px) {
+    .modal-body-edit {
+        margin: 0px;
+        min-height: 516px;
+        max-height: 516px;
+    }
+}
+
+
+input[type="file"] {
+    display: none;
+}
+
+.edit-title {
+    color: white; 
+    font-weight:600; 
+    margin: 0px 0px 4px 0px;
+    font-family: 'Youtube Sans', 'Roboto';
+    letter-spacing: 0.5px;
+}
+
+.edit-subtitle { 
+    color: white; 
+    font-weight: 200; 
+    font-size: 12px;
+    font-family: 'Roboto';
+    margin: 0px;
+}
+
+textarea, textarea:focus {
+    background-color : #383838; 
+    outline: none;
+    font-family: 'Roboto';
+    font-size: 16px;
+    font-weight: 400;
+    color: white;
+    margin-bottom: 12px;
+    border: 1px solid #5C5C5C;
+
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+.share {
+	font-size: 15.6px;
+	font-family: Roboto;
+	font-weight: 300;
+	color: white;
+	line-height: 18px;
+	margin-right: 26px;
+	cursor: pointer;
+}
+
+.modal-footer {
+    min-height: 60px;
+    padding: 12px 16px;
+    border-top: 0.4px solid #5C5C5C;
+}
+
+
+.primary {
+    color: #181818;
+    background: rgb(62,166,255);
+    border: 1px solid #5C5C5C;
+    box-shadow: 0 1px 2px rgba(15, 15, 15, 0.1);
+    font-family: 'Roboto';
+    font-weight: 500;
+}
+
+.primary:hover {
+    background: rgb(14, 137, 244);
+}
+
+.video-container {
+	max-width: 360px !important;
+    min-width: 360px !important;
+	margin: 0px;
+}
+@media (max-width: 769px) {
+    .video-container {
+        max-width: 760px !important;
+        min-width: 280px !important;
+        margin-bottom: 20px;
+    }
+}
+
+.video-js {
+    width: 100%;
+    aspect-ratio: 16/9;
+    height: auto;
+    border: none !important;
+    outline: none !important;
+}
+
+video:focus{
+  outline: 0;
+}
+
+.preview-text {
+    height: 242px;
+    padding: 24px 16px 16px 16px;
+    background-color: #181818;
+    white-space: nowrap;
+}
+
+.shareable-grow{
+    flex-grow:1;
+    margin-right: 4px;
+    max-width: calc(100% - 40px);
+}
+
+.pagelink {
+    font-size: 14px;
+    font-weight: 300;
+    font-family: 'Roboto';
+    margin-bottom: 20px;
+
+    text-decoration: none;
+    display: inline-block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: top
+}
+
+.select-container {
+    position: relative;
+}
+
+.select-category {
+    width: 100%;
+    padding: 7px 8px;
+    margin: 4px 0px 20px 0px;
+    background-color: #181818;
+    border-radius:  4px;
+    border: 1px solid #5C5C5C;
+    box-shadow: none;
+
+    color: white;
+    font-family: 'Roboto';
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.expand-category {
+    position: absolute;
+    top: 9px;
+    right: 4px;
+    color: white;
+    background-color: #181818;
+    pointer-events: none;
+}
+
+.custom-file-upload {
+    display: inline-block;
+    cursor: pointer;
+    border: 1px solid #5C5C5C;
+    width: 100%;
+    padding: 6px;
+    background-color: #383838;
+    border-radius: 4px;
+
+    color: white;
+    font-family: 'Roboto';
+    font-size: 14px;
+    font-weight: 300;
+    margin: 4px 0px 0px 0px;
+
+    display: block;
+    text-align: center;
+}
+.custom-file-upload:hover {
+    background: #282828;
+    font-weight: 400;
+}
+
+.icon-bot {
+	cursor: pointer;
+	vertical-align: middle;
+	color: white;
+	margin-right: 2px;
+}
+
+.secondary {
+    color: white;
+    background: #383838;
+    border: 1px solid #5C5C5C;
+    box-shadow: 0 1px 2px rgba(15, 15, 15, 0.1);
+    font-family: 'Roboto';
+    font-weight: 200;
+}
+.secondary:hover {
+    background: #282828;
+}

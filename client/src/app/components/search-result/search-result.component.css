@@ -1,0 +1,47 @@
+button {
+    background-color: transparent;
+    border: 0px;
+    padding: 0px;
+}
+
+#search-result-listing {
+    max-width: min(1000px, calc(90% - 20px));
+    margin: auto;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.filter {
+    color: white;
+}
+
+#filter-button {
+    color: gray;
+    font-weight:500;
+}
+
+.filter-menu {
+    display: flex;
+    gap: 2em;
+    margin-top: 1em;
+}
+
+.filter-menu > .filter-by {
+    flex-grow: 1;
+}
+
+.filter-by ul {
+    padding-left: 0px;
+    font-size: 90%;
+    color: grey;
+}
+
+.filter-by li {
+    list-style-type: none;
+}
+
+.empty-search {
+    text-align: center;
+    margin-top: 2em;
+    color: white;
+}

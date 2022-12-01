@@ -1,0 +1,87 @@
+.cancelBtnModal{
+    background-color: #181818;
+    border: 0;
+    color: #fafafa;
+    margin: 3px;
+    font-weight: bold;
+}
+.commentBtn{
+    background-color: #3EA6F8;
+    border: 0;
+    color: #181818;
+    padding: 7px;
+    margin: 3px;
+    font-weight: bold;
+    border-radius:3px !important;
+}
+.customInput{
+    background-color: #181818;
+    border: 0;
+    color: #fafafa;
+    border-radius:0px !important;
+}
+textarea {
+    resize: none;
+    overflow: hidden;
+    height: 20px;
+    max-height: 100px;
+}
+.form-control:focus {
+    box-shadow: none;
+  }
+  button:disabled,
+  button[disabled]{
+    background-color: #303030;
+    color: #6B7171;
+  }
+
+.dropdown-menu { 
+    background-color: #272727 !important; 
+    color: #fafafa !important;
+}
+.dropdown-menu:hover{
+    cursor:pointer;
+}
+.dropdown-item { 
+    background-color: #272727 !important; 
+    color: #fafafa !important;
+    padding-bottom: 7px;
+    padding-top:7px;
+}
+
+.dropdown-item:hover { 
+    background-color: #383838 !important; 
+    color: #fafafa !important;
+    cursor:pointer;
+}
+.sortBtn{
+    background-color: #181818;
+    border: 0;
+    color: #fafafa;
+    margin: 5px;
+    font-weight: bold;
+}
+.vertical-center {
+    min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  
+    display: flex;
+    align-items: center;
+}
+.replyDropdown:hover{
+    cursor: pointer;
+}
+.pointerCursor:hover{
+    cursor: pointer;
+}
+.more-icon {
+	color: white;
+    visibility: hidden;
+}
+.card-body:hover .more-icon {
+    visibility: visible;
+    font-size: 22px;
+}
+.enableMultiLine{
+    word-wrap: break-word !important;
+    white-space: pre-line !important
+}

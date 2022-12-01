@@ -1,0 +1,39 @@
+<div class="row video-listing listing-{{ type }}">
+  <div class="video-card col card-{{ type }}" *ngFor="let video of videos">
+    <div class="card shadow-none">
+      <a [routerLink]="['/watch']" [queryParams]="{ v: video.videoId }" >
+        <img [src]="getThumbnail(video.videoThumbnailPath)" (error)="changeSourceThumbnail($event)" class="w-100 h-100 thumbnail rounded-0"/>
+      </a>
+
+      <div class="bottom-right-default bottom-right-{{ type }}"> {{ video.videoDuration * 1000 | date: "mm:ss" }} </div>
+      <a [routerLink]="['/watch']" [queryParams]="{ v: video.videoId }" class="bottom-right-hover bottom-right-{{ type }}"> Click to Play </a>
+
+      <div class="d-flex flex-row card-body-{{ type }}">
+        <a class="card-icon-{{ type }}" [routerLink]="['/c', video.channelName]">
+          <img [src]="getPicture(video.userProfilePicture)" class="profile-icon" (error)="changeSourceProfile($event)"/>
+        </a>
+
+        <div class="card-text-{{ type }} d-flex flex-column">
+          <a [routerLink]="['/watch']" [queryParams]="{ v: video.videoId }" class="video-title title-{{ type }}">{{ video.videoTitle }}</a>
+          <a class="video-subtitle subtitle-{{ type }} channel-hover-{{ type }}" [routerLink]="['/c', video.channelName]"> {{ video.channelName }}</a>
+          <a class="video-subtitle subtitle-{{ type }}" [routerLink]="['/watch']" [queryParams]="{ v: video.videoId }">
+            {{ displayViews(video.videoTotalViews) }} • {{ formatTime(video.videoCreatedAt) }}
+          </a>
+        </div>
+
+        <div class="card-options dropdown">
+          <mat-icon class="more-icon" id="dropMenu" data-bs-toggle="dropdown">more_vert</mat-icon>
+          <ul class="dropdown-menu" aria-labelledby="dropMenu">
+            <li class="drop-item" (mouseup)="changeLink(video.videoId)" [cdkCopyToClipboard]="pagelink">
+              <span> <mat-icon class="icon">link</mat-icon> Share </span>
+            </li>
+            <li class="drop-item" data-bs-toggle="modal" data-bs-target="#playlistModal" (click)="getVideoData(video)">
+              <span> <mat-icon class="icon">playlist_add</mat-icon> Save </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

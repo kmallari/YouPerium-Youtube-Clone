@@ -1,0 +1,119 @@
+
+
+<div
+  infiniteScroll
+  [infiniteScrollDistance]="1"
+  [infiniteScrollThrottle]="150"
+  (scrolled)="onScroll()"
+>
+  <div id="search-result-listing">
+    <div class="filter">
+      <button id="filter-button" (click)="toggleFiltersDisplay()" [ngStyle]="{ 'color': showFilters ? 'white' : 'gray' }">
+        <span style="display: flex; align-items: center; gap: 2px">
+          <mat-icon class="icon">tune</mat-icon> FILTERS
+        </span>
+      </button>
+      <div *ngIf="showFilters" class="filter-menu">
+        <div class="filter-by">
+          <strong>TYPE</strong>
+          <hr />
+          <ul>
+            <li>
+              <button
+                (click)="
+                  type = 'videos'; sortBy = 'videoTotalViews'; _changedFilter()
+                "
+                [ngStyle]="{ color: type === 'videos' ? 'white' : 'grey' }"
+              >
+                Video
+              </button>
+            </li>
+            <li>
+              <button
+                (click)="
+                  type = 'channels'; sortBy = 'subscribersCount'; _changedFilter()
+                "
+                [ngStyle]="{ color: type === 'channels' ? 'white' : 'grey' }"
+              >
+                Channel
+              </button>
+            </li>
+          </ul>
+        </div>
+        <div *ngIf="type === 'videos'" class="filter-by">
+          <strong>SORT BY</strong>
+          <hr />
+          <ul>
+            <li>
+              <button
+                (click)="sortBy = 'relevance'; _changedFilter()"
+                [ngStyle]="{
+                  color: sortBy === 'relevance' ? 'white' : 'grey'
+                }"
+              >
+                Relevance
+              </button>
+            </li>
+            <li>
+              <button
+                (click)="sortBy = 'videoTotalViews'; _changedFilter()"
+                [ngStyle]="{
+                  color: sortBy === 'videoTotalViews' ? 'white' : 'grey'
+                }"
+              >
+                View count
+              </button>
+            </li>
+            <li>
+              <button
+                (click)="sortBy = 'videoCreatedAt'; _changedFilter()"
+                [ngStyle]="{
+                  color: sortBy === 'videoCreatedAt' ? 'white' : 'grey'
+                }"
+              >
+                Upload date
+              </button>
+            </li>
+          </ul>
+        </div>
+        <div *ngIf="type === 'channels'" class="filter-by">
+          <strong>SORT BY</strong>
+          <hr />
+          <ul>
+            <li>
+              <button
+                (click)="sortBy = 'subscribersCount'; _changedFilter()"
+                [ngStyle]="{
+                  color: sortBy === 'subscribersCount' ? 'white' : 'grey'
+                }"
+              >
+                Subscribers count
+              </button>
+            </li>
+            <li>
+              <button
+                (click)="sortBy = 'createdAt'; _changedFilter()"
+                [ngStyle]="{ color: sortBy === 'createdAt' ? 'white' : 'grey' }"
+              >
+                Creation date
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <hr style="color: white" />
+    <app-videos-list
+      *ngIf="!emptySearch && type === 'videos'"
+      [videos]="videos"
+      [type]="listType"
+    ></app-videos-list>
+    <app-channels-list
+      *ngIf="!emptySearch && type === 'channels'"
+      [channels]="channels"
+    ></app-channels-list>
+  </div>
+  <h2 *ngIf="emptySearch" class="empty-search" style="color: white;">
+    No {{type}} matched the search query.
+  </h2>
+</div>

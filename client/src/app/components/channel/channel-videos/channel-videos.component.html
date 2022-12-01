@@ -1,0 +1,5 @@
+<div class="video-grid-wrapper" infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="150" (scrolled)="onScroll()">
+	<app-videos-grid [videos]="videos" type="channel"></app-videos-grid>
+</div>
+
+<app-playlist-modal></app-playlist-modal>

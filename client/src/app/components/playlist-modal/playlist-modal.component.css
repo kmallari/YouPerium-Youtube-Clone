@@ -1,0 +1,39 @@
+.modal-content {
+    background: #212121;
+    color: #fafafa;
+    width: 260px;
+    margin: auto;
+  }
+.modal-header{
+    border-color: #383838;
+}
+.modal-body{
+    border-color: #383838;
+}
+.modal-footer{
+    border-color: #383838;
+}
+.cancelBtn{
+    background-color: #212121;
+    border: 0;
+    color: #fafafa;
+    margin: 3px;
+    font-weight: bold;
+}
+.saveBtn{
+    background-color: #212121;
+    border: 0;
+    color: #3EA6F8;
+    margin: 3px;
+    font-weight: bold;
+}
+.customInput{
+    background-color: #212121;
+    border: 0;
+    color: #fafafa;
+    border-radius:0px !important;
+}
+
+.createPlaylist:hover {
+    cursor: pointer;
+}

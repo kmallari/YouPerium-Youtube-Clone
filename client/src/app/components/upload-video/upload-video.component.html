@@ -1,0 +1,73 @@
+<div class="modal fade" id="uploadModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Upload Videos</h5>
+        <mat-icon data-bs-dismiss="modal" class="icon md-icon reorderIcon" cdkDragHandle>close</mat-icon>
+      </div>
+
+			<div class="modal-body">
+				<label for="video" class="icon-container">
+					<mat-icon class="upload-icon">file_upload</mat-icon>
+				</label>
+				<p class="modal-text-main">Select a video file to upload</p>
+				<p class="modal-text">Choose the video to be published in your channel.</p>
+				
+				<div class="btn-container">	
+					<label for=video type="button" class="file-button">Select Files</label>
+					<input (change)="onVideoUpload($event)" type="file" id="video">
+				</div>		
+			</div>
+
+			<button type="button" class="hide-btn" #uploadBtn data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#uploadingModal"></button>
+			<button type="button" class="hide-btn" #errorBtn data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#errorModal"></button>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="errorModal" tabindex="-1" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+  
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h5 class="modal-title">Video Upload Error</h5>
+		  <mat-icon data-bs-dismiss="modal" class="icon md-icon reorderIcon" cdkDragHandle>close</mat-icon>
+		</div>
+  
+		<div class="modal-body">
+			<div class="icon-container container-pulse-2">
+				<mat-icon class="uploading-icon">priority_high</mat-icon>
+			</div>
+			<p class="modal-text-main">Oh no! An error occured.</p>
+			<p class="modal-text">The video was not uploaded. Please try again.</p>
+
+		</div>
+	  </div>
+	</div>
+</div>
+
+<div class="modal fade" id="uploadingModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+	<div class="modal-dialog modal-dialog-centered">
+  
+	  	<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Uploading Video...</h5>
+			</div>
+
+			<div class="modal-body">
+				<div class="icon-container container-pulse">
+					<mat-icon class="uploading-icon">file_upload</mat-icon>
+				</div>
+				<p class="modal-text-main">Great! Uploading your video.</p>
+				<p class="modal-text">Please wait until your video is completely uploaded.</p>
+		
+			</div>
+
+			<button type="button" class="hide-btn" #patchBtn data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#patchModal"></button>
+	  	</div>
+
+	</div>
+</div>
+
+<app-edit-video></app-edit-video>

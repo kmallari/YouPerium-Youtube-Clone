@@ -1,0 +1,32 @@
+<div class="modal-header">
+    <h1>Age</h1>
+</div>
+<div class="modal-body">
+    <div class="row message">
+        Your birthday may be used for account security and Youtube personalization.
+    </div>
+    <form class="form p-0 input-fields">
+        <div class="form-floating birthday-input">
+            <input 
+                name = "birthday"
+                type="date" 
+                class="form-control" 
+                id="floatingBirthday" 
+                placeholder="Password"
+                [formControl]="birthDate"
+                [class.is-invalid] = "disabler() && birthDate.touched"
+                [class.is-valid] = "!disabler()">
+            <label for="floatingBirthday">Birthdate</label>
+            <div class="age-invalid error-message m-0">
+                invalid birthday
+            </div>
+        </div>
+        <div class="col d-flex justify-content-end">
+            <button 
+                (click)="onSaveClicked()" 
+                class="btn btn-primary save-button" [disabled]="disabler()">
+                Save
+            </button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,243 @@
+.card {
+    width: 748px;
+    height: 640px;
+    padding: 48px;
+}
+
+.signup-form {
+    padding: 0;
+    padding-right: 48px;
+}
+
+.card-body {
+    padding: 0;
+    height: calc(100% - 24px);
+}
+
+.input-fields {
+    padding-top: 24px;
+}
+
+.wrapper {
+    height: 100vh;
+    width: 100%;
+}
+
+.card-header {
+    background-color: white;
+    border: none;
+    padding: 0;
+}
+
+.row-holder {
+    height: 544px;
+    max-height: 544px;
+}
+
+.create-account {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 16px;
+    font-size: 24px;
+    font-weight: 400;
+    font-family: arial;
+    color: #202124;
+}
+
+.create-account-message {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 8px;
+    color: #202124;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0.1px;
+}
+
+.firstName-input {
+    width: 160px;
+}
+
+.lastName-input {
+    width: 160px;
+}
+
+.username-input {
+    margin: 0;
+    margin-top: 11px;
+}
+
+.email-input {
+    margin: 0;
+    margin-top: 11px;
+}
+
+.password-related {
+    margin: 0;
+    margin-top: 11px;
+}
+
+.password-input {
+    width: 160px;
+}
+
+.confirm-input {
+    width: 160px;
+}
+
+.create-account-btn{
+    font-family: Roboto;
+    letter-spacing: .0107142857em;
+    font-weight: 600;
+    color : #1a73e8;
+    height: 100%;
+}
+
+.create-account-btn:hover{
+    background-color: #f6fafe;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.birthday-input {
+    margin: 0;
+    margin-top: 11px;
+}
+
+/*First name related csss*/
+.firstName-input .choose-firstname {
+    display: none;
+}
+
+.firstName-input .firstname-invalidated {
+    display: none;
+}
+
+.firstName-input:hover .is-invalid.invalid-firstname ~ .firstname-invalidated{
+    display: inline;
+    color : #dc3545
+}
+
+.firstName-input:hover .is-invalid.touched ~ .choose-firstname{
+    display: inline;
+    color : #dc3545
+}
+
+/*Last name name related csss*/
+.lastName-input .choose-lastname {
+    display: none;
+}
+
+.lastName-input .lastname-invalidated {
+    display: none;
+}
+
+.lastName-input:hover .is-invalid.invalid-lastname ~ .lastname-invalidated{
+    display: inline;
+    color : #dc3545
+}
+
+.lastName-input:hover .is-invalid.touched ~ .choose-lastname{
+    display: inline;
+    color : #dc3545
+}
+
+/*username name related csss*/
+.username-input .choose-username {
+    display: none;
+}
+
+.username-input .username-invalidated {
+    display: none;
+}
+
+.username-input .user-exists {
+    display: none;
+}
+
+.username-input:hover .is-invalid.invalid-username ~ .username-invalidated{
+    display: inline;
+    color : #dc3545
+}
+
+.username-input:hover .is-invalid.username-exists ~ .user-exists{
+    display: inline;
+    color : #dc3545
+}
+
+.username-input:hover .is-invalid.touched ~ .choose-username{
+    display: inline;
+    color : #dc3545
+}
+
+/*email related csss*/
+.email-input .choose-email {
+    display: none;
+}
+
+.email-input .email-invalidated {
+    display: none;
+}
+
+.email-input .email-exists {
+    display: none;
+}
+
+.email-input:hover .is-invalid.invalid-email ~ .email-invalidated{
+    display: inline;
+    color : #dc3545
+}
+
+.email-input:hover .is-invalid.useremail-exists ~ .email-exists{
+    display: inline;
+    color : #dc3545
+}
+
+.email-input:hover .is-invalid.touched ~ .choose-email{
+    display: inline;
+    color : #dc3545
+}
+
+/*password related csss*/
+.password-input .choose-password {
+    display: none;
+}
+
+.password-input .password-invalidated {
+    display: none;
+}
+
+.password-input:hover .is-invalid.invalid-password ~ .password-invalidated{
+    display: inline;
+    color : #dc3545
+}
+
+.password-input:hover .is-invalid.touched ~ .choose-password{
+    display: inline;
+    color : #dc3545
+}
+
+/*confirm password related csss*/
+.confirm-input .choose-confirm-password {
+    display: none;
+}
+
+.confirm-input .confirm-password-invalidated {
+    display: none;
+}
+
+.confirm-input:hover .is-invalid.invalid-confirmPassword ~ .confirm-password-invalidated{
+    display: inline;
+    color : #dc3545
+}
+
+.confirm-input:hover .is-invalid.touched ~ .choose-confirm-password{
+    display: inline;
+    color : #dc3545
+}
+
+
+.error-message {
+    display: flex;
+    justify-content: center;
+}

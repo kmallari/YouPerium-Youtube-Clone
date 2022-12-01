@@ -1,0 +1,33 @@
+<div class="video-card video-{{type}}" *ngFor="let video of videos">
+    <div class="d-flex flex-row card-body" >
+        <a class="card-icon icon-{{type}}" [routerLink]="['/watch']" [queryParams]="{v:video.videoId}">
+            <img [src]="getThumbnail(video.videoThumbnailPath)"  class="thumbnail rounded-0" (error)="changeSourceThumbnail($event)"/>
+            <div class="bottom-right-default"> {{ video.videoDuration! * 1000 | date: "mm:ss" }} </div>
+            <div class="bottom-right-hover">Click to Play</div>
+        </a>
+        <a class="card-text" [routerLink]="['/watch']" [queryParams]="{v:video.videoId}">
+            <p class="video-card-title card-title-{{type}}">{{ video.videoTitle }}</p>
+            <a class="video-card-subtitle channel-hover" [routerLink]="['/c', video.channelName]"  *ngIf="type=='mini'" >{{ video.channelName }}</a>
+            <p class="video-card-subtitle" *ngIf="type!='explore'"> {{ displayViews(video.videoTotalViews) }} • {{ formatTime(video.videoCreatedAt) }} </p>
+            <p class="video-card-subtitle" *ngIf="type=='explore'" style="margin-bottom: 14px; margin-top: 8px;"> 
+                <a class="channel-name channel-hover" [routerLink]="['/c', video.channelName]">{{ video.channelName }}</a> 
+                • {{ displayViews(video.videoTotalViews) }} • {{ formatTime(video.videoCreatedAt) }} 
+            </p>
+            
+            <a [routerLink]="['/c', video.channelName]">
+                <img [src]="getPicture(video.userProfilePicture)" class="profile-icon" *ngIf="type=='search'" (error)="changeSourceProfile($event)"/>
+            </a>
+            <a class="channel-name channel-hover" [routerLink]="['/c', video.channelName]"  *ngIf="type=='search'">{{ video.channelName }}</a>
+            <p class="video-description" *ngIf="type!='mini'"> {{ video.videoDescription }} </p> 
+        </a>
+
+        <div class="card-options dropdown">
+            <mat-icon class="more-icon" id="dropMenu" data-bs-toggle="dropdown"> more_vert</mat-icon>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropMenu">
+                <li class="drop-item" (mouseup)="changeLink(video.videoId)" [cdkCopyToClipboard]="pagelink"> <span> <mat-icon class="icon">link</mat-icon> Share </span> </li>
+                <li class="drop-item" data-bs-toggle="modal" data-bs-target="#playlistModal" (click)="getVideoData(video)"> <span> <mat-icon class="icon">playlist_add</mat-icon> Save </span> </li>
+            </ul>
+        </div>
+        
+    </div>
+</div>

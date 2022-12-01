@@ -1,0 +1,70 @@
+
+<div class="modal fade" id="patchModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+    
+      <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Video Details</h5>
+                <mat-icon data-bs-dismiss="modal" class="icon md-icon" (click)="destroyPlayer()">close</mat-icon>
+            </div>
+    
+            <form [formGroup]="spaceform" #spaceDirective="ngForm" (ngSubmit)="onSubmit()" novalidate>
+                
+                <div class="modal-body modal-body-edit">
+                    <div class="row top-form flex-md-row-reverse">
+                        
+                        <div class="col-md-auto col-12 video-container">
+                            <p class="edit-title">Video Preview </p>
+                            <video #target id="target" class="video-js"></video>
+    
+                            <div class="preview-text">
+                                <div class="d-flex flex-row">
+                                    <div class="shareable-grow">
+                                        <p class="edit-subtitle">Shareable Link</p>
+                                        <a class="pagelink" href={{pagelink}}>{{pagelink}}</a>
+                                    </div>
+                                    <div style="margin: 4px 10px">
+                                        <mat-icon class="icon-bot" (click)="copyText()">content_copy</mat-icon>
+                                    </div>
+                                </div>
+                                
+    
+                                <p class="edit-subtitle">Category</p>
+                                <div class="select-container">
+                                    <select class="select-category" id="category"  (change)="onSelect($any($event.target).value)" *ngIf="selectReset">
+                                        <option selected value={{selected}}>{{selected}}</option>
+                                        <option value={{category}} *ngFor="let category of otherCategories">{{category}}</option>		
+                                    </select>
+                                    <mat-icon class="expand-category">expand_more</mat-icon>
+                                </div>
+                                
+    
+                                <p class="edit-subtitle">Thumbnail</p>
+                                <label for=thumbnail class="custom-file-upload" style="color: white; font-weight:300;">
+                                     Upload an Image
+                                </label>
+                                <input type="file" (change)="onThumbnailUpload($event)" id="thumbnail"> 		
+                            </div>
+    
+                        </div>
+    
+                        <div class="col-md col-12">
+                            <p class="edit-title">Title <span class="edit-subtitle"> (required)</span> </p>
+                            <textarea class="form-control" formControlName="title" rows="4" placeholder="{{title}}" style="font-weight:300"></textarea>
+                            <p class="edit-title">Description</p>
+                            <textarea class="form-control" formControlName="description" rows="11" placeholder="{{desc}}" 
+                            style="font-weight:300; margin:0px;"></textarea>
+                        </div>
+    
+                    </div>
+                </div>
+    
+                <div class="modal-footer">
+                    <button type="button" class="btn secondary" data-bs-dismiss="modal" (click)="destroyPlayer()">Ignore</button>
+                    <button type="button" class="btn primary" type="submit" [disabled]="!spaceform.valid" data-bs-dismiss="modal">Save changes</button>
+                </div>
+        </form>
+    
+      </div>
+    </div>
+    </div>

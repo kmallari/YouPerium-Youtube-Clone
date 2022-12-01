@@ -1,0 +1,19 @@
+<div class="categories">
+  <ul #listing class="listing">
+    <li *ngFor="let item of items" class="category">
+      <button class="category-btn colored" *ngIf="item.name==current" (click)="scrollUp()">{{item.name}}</button>
+      <button class="category-btn" (click)="categoryClicked(item.name)" *ngIf="item.name!=current">{{item.name}}</button>
+    </li>
+  </ul>
+  
+  <div class="nav-btn" *ngIf="collapsed">
+    <div class="arrow-container left" style="margin-left: 9px;" (click)="scrollLeft()" *ngIf="showLeft">
+      <mat-icon class="icon" style="float: left;">chevron_left</mat-icon>
+    </div>
+    <div class="arrow-container right" style="margin-right: 9px;" (click)="scrollRight()" *ngIf="showRight">
+      <mat-icon class="icon" style="float: right;">navigate_next</mat-icon>
+    </div>
+  </div>
+
+  
+</div>

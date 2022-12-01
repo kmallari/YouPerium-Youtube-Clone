@@ -1,0 +1,46 @@
+<!-- Button trigger modal --> 
+  <!-- Modal -->
+<div class="modal robotoFont fade" id="playlistModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-0">
+            <div class="modal-header">
+                <div class="container  d-flex flex-row justify-content-between">
+                    <h5 class="modal-title">Save to...</h5>
+                    <mat-icon [ngStyle]="{'color':'white'}"  data-bs-dismiss="modal" class="icon md-icon reorderIcon" cdkDragHandle>close</mat-icon>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="container" *ngFor="let playlist of userPlaylists">
+                    <div class="form-check" >
+                        <!--<div *ngIf="videoIn.includes(playlist.playlistId)">Hi</div>-->
+                        <input (click)="addDeleteToPlaylist(playlist.playlistId)" class="form-check-input" type="checkbox" [checked]="videoIn.includes(playlist.playlistId)" id="flexCheckDefault{{playlist.playlistId}}">
+                        <label class="form-check-label" for="flexCheckDefault{{playlist.playlistId}}">
+                            {{playlist.title}}
+                        </label>
+                    </div>
+                </div>
+              
+            </div>
+            <!--<section class="example-section">
+                <mat-checkbox class="example-margin">Check me!</mat-checkbox>
+            </section>-->
+
+            <div class="modal-footer">
+                <div class="container d-flex flex-row justify-content-between createPlaylist" *ngIf="!createPlaylist" (click)="clickCreatePlaylist()">
+                    <mat-icon [ngStyle]="{'color':'white'}"  class="icon md-icon reorderIcon" cdkDragHandle>add</mat-icon>
+                    <h5>Create new playlist</h5>
+                </div>
+                <div  *ngIf="createPlaylist" style="width:100%">
+                    <input #playlistName class="input customInput border-bottom form-control" style="padding:0" placeholder="Enter playlist name...">
+                    <!--<input class="input customInput border-bottom form-control" placeholder="Set a description">-->
+                    <div style="text-align:right">   
+                            <button class="btn cancelBtn" (click)="clickCancel()">CANCEL</button>
+                            <button class="btn saveBtn" (click)="clickSave(playlistName.value)">SAVE</button>
+                    </div>
+                </div>
+
+
+            </div>
+          </div>
+    </div>
+</div>

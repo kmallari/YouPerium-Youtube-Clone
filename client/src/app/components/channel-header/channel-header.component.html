@@ -1,0 +1,24 @@
+<div class="row m-0 p-0 channel-container" [ngStyle]="{'height' : style.componentHeight}">
+    <div class="col-auto p-0 channel-profile">
+        <img src="{{getChannelPicture()}}" (click)="userClicked()" class="channel-profile-image" (error)="changeSource($event)" [ngStyle]="{'height' : style.profileSize, 'width' : style.profileSize, 'border-radius' : '50%'}">
+    </div>
+    <div class="col p-0 channel-info align-items-center">
+        <div class="row m-0 p-0 d-flex justify-content-between align-items-center contents-row">
+            <div class="col-auto p-0 name-subscription">
+                <div class="row m-0 channel-name" (click)="userClicked()" [ngStyle]="{'font-size' : style.nameSize}">
+                    {{user.channelName}}
+                </div>
+                <div class="row m-0 subscribe-count" [ngStyle]="{'font-size' : style.countSize}">
+                    {{displaySubscribers(user.subscribersCount)}}
+                </div>
+            </div>
+            <div 
+                *ngIf="canSubscribe()" 
+                class="col-auto p-0 subscribe-button btn btn-primary" 
+                (click)="subscribeToChannel()"
+                [ngStyle]="{'background-color': alreadySubscribed ? '#303030' : '#cc0000', 'border-color': alreadySubscribed ? '#303030' : '#cc0000'}">
+                {{alreadySubscribed? 'SUBSCRIBED' : 'SUBSCRIBE'}}
+            </div>
+        </div>
+    </div>
+</div>

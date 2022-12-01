@@ -1,0 +1,127 @@
+<div *ngIf="!identityConfirmed" class="row m-0 confirm-identity">
+    <div class="col p-0">
+        <div class="row m-0 confirm-identity-header">
+            <div class="col p-0 confirm-identity-items">
+                <div class="row p-0 confirm-password-prompt d-flex justify-content-center">
+                    Confirm your password
+                </div>
+                <div class="row m-0 p-0 confirm-password-message d-flex justify-content-center">
+                    Please enter your password in order to get this.
+                </div>
+            </div>
+        </div>
+        <form class="form input-fields d-flex justify-content-center">
+            <div class="form-floating password-input">
+                <input 
+                    name = "password"
+                    minlength="8"
+                    maxlength="120"
+                    required
+                    type="password" 
+                    class="form-control" 
+                    id="floatingPassword" 
+                    placeholder="Password"
+                    [formControl]="password">
+                <label for="floatingPassword">Password</label>
+            </div>
+        </form>
+        <div class="row p-0 d-flex justify-content-center confirm-container">
+            <div class="col-auto confirm-button btn btn-primary" (click)="confirmIdentity()">
+                <div class="confirm-text">
+                    Confirm
+                </div> 
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="identityConfirmed" class="row m-0 p-0 account-information">
+    <div *ngIf="user" class="col p-0 account-info-items">
+        <div class="row m-0 account-info-header">
+            <div class="col p-0 info-header-items">
+                <div class="row m-0 p-0 header-message">
+                    <h1 class="p-0 text  d-flex justify-content-center">Personal info</h1>
+                </div>
+                <div class="row m-0 p-0 header-message-addendum  d-flex justify-content-center">
+                    Info about you and your preferences on Youtube
+                </div>
+            </div>
+        </div>
+        <div class="row header-image-container">
+            <img class="header-image" src="https://www.gstatic.com/identity/boq/accountsettingsmobile/profile_scene_visible_720x256_ee5ae234eb96dc206b79c851f41a6f69.png">
+        </div>
+        <div class="row-auto mx-auto p-0 basic-info">
+            <div class="col m-0 p-0 basic-info-items">
+                <div class="row m-0 basic-info-title">
+                    <h2 class="basic-info-text-title p-0">Basic info</h2>
+                </div>
+                <div class="row m-0 photo-info align-items-center" (click)="profilePictureClicked()">
+                    <div class="col-10 p-0 photo-texts">
+                        <div class="row m-0 p-0 photo-texts-contents">
+                            <div class="col-3 p-0 photo-title">
+                                Photo
+                            </div>
+                            <div class="col-9 p-0 photo-description">
+                                A photo helps personalize your account
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-2 p-0 photo-icon d-flex justify-content-center">
+                        <img src="{{getChannelPicture()}}" class="photo-itself" (error)="changeSource($event)" width="60px" height="60px">
+                    </div>
+                </div>
+                <div class="row m-0 name-info align-items-center" (click)="nameChangeClicked()">
+                    <div class="col-10 p-0 name-texts =">
+                        <div class="row m-0 p-0 name-texts-contents">
+                            <div class="col-3 p-0 name-title">
+                                Name
+                            </div>
+                            <div class="col-9 p-0 name-description">
+                                {{user.firstName + ' ' + user.lastName}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-2 p-0 name-icon d-flex justify-content-center">
+                        >
+                    </div>
+                </div>
+                <div class="row m-0 age-info align-items-center" (click)="ageChangeClicked()">
+                    <div class="col-10 p-0 age-texts">
+                        <div class="row m-0 p-0 age-texts-contents">
+                            <div class="col-3 p-0 age-title">
+                                Age
+                            </div>
+                            <div class="col-9 p-0 age-description">
+                                {{user.age}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-2 p-0 age-icon d-flex justify-content-center">
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mx-auto p-0 contact-info">
+            <div class="col m-0 p-0 contact-info-items">
+                <div class="row m-0 contact-info-title">
+                    <h2 class="contact-info-text-title p-0">Contact info</h2>
+                </div>
+                <div class="row m-0 email-info align-items-center" (click)="emailChangeClicked()">
+                    <div class="col-10 p-0 email-texts">
+                        <div class="row m-0 p-0 email-texts-contents">
+                            <div class="col-3 p-0 email-title">
+                                Email
+                            </div>
+                            <div class="col-9 p-0 email-description">
+                                {{user.email}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-2 p-0 email-icon d-flex justify-content-center">
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

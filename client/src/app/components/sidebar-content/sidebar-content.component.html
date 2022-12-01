@@ -1,0 +1,64 @@
+<div class="offcanvas-body" *ngIf="big">
+  <div *ngIf="!loggedIn">
+    <div *ngFor="let item of menu" >
+      <a class="menu-item d-flex" [routerLink]="'/' + item.path" >
+        <mat-icon class="icon">{{ item.icon }}</mat-icon> {{ item.name }}
+      </a>
+    </div>
+  </div>
+
+  <div *ngIf="loggedIn">
+    <div *ngFor="let item of menu2" >
+      <a class="menu-item d-flex" [routerLink]="'/' + item.path">
+        <mat-icon class="icon">{{ item.icon }}</mat-icon> {{ item.name }}
+      </a>
+    </div>
+  </div>
+  
+
+  <hr class="sidebar-hr" />
+  <div class="submenu-title">Playlists</div>
+  <div *ngFor="let playlist of playlists">
+    <a [routerLink]="'/playlist'" [queryParams]="{ list: playlist.playlistId }">
+      <div class="overflow-handler menu-item" (click)="goToPlaylist(playlist.playlistId)">
+        <mat-icon class="icon">playlist_play</mat-icon>{{ playlist.title }}
+      </div>
+    </a>
+  </div>
+
+
+  <hr class="sidebar-hr" />
+  <div class="submenu-title">Subscriptions</div>
+  <div *ngFor="let channel of subscriptions">
+    <a [routerLink]="['/c', channel.subscribeeChannelName]">
+      <div class="overflow-handler menu-item">
+        <img [src]="getChannelPicture(channel)" (error)="changeSource($event)" class="profile-icon" />
+        {{ channel.subscribeeChannelName }}
+      </div>
+    </a>
+  </div>
+</div>
+
+<div class="offcanvas-body-mn" *ngIf="mini">
+  <div *ngIf="!loggedIn">
+    <div *ngFor="let item of menu">
+      <a class="menu-item-mn"  [routerLink]="'/' + item.path">
+        <div class="item-container-mn">
+          <mat-icon class="icon-mn">{{ item.icon }}</mat-icon>
+          <p class="subtitle-mn">{{ item.name }}</p>
+        </div>
+      </a>
+    </div>
+  </div>
+  
+  <div *ngIf="loggedIn">
+    <div *ngFor="let item of menu2">
+      <a class="menu-item-mn" [routerLink]="'/' + item.path">
+        <div class="item-container-mn">
+          <mat-icon class="icon-mn">{{ item.icon }}</mat-icon>
+          <p class="subtitle-mn">{{ item.name }}</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>

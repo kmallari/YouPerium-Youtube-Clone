@@ -1,0 +1,14 @@
+.wrapper {
+    margin: 0;
+    padding-left: 7%;
+    padding-right: 7%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.under-construction-image {
+    width: 60%;
+    height: auto;
+}

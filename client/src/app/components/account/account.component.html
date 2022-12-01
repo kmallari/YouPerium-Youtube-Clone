@@ -1,0 +1,41 @@
+
+
+
+<div *ngIf="user" class="wrapper p-0 d-flex justify-content-center flex-column">
+    <div class="row m-0 account-header">
+        <div class="col p-0 account-header contents">
+            <div class="row m-0 p-0 account-picture d-flex justify-content-center">
+                <img class="channel-picture m-0 p-0" src="{{getChannelPicture()}}" (error)="changeSource($event)">
+            </div>
+            <div class="row p-0 welcome-message d-flex justify-content-center">
+                Welcome, {{user.firstName + ' ' + user.lastName}}
+            </div>
+            <div class="row p-0 message-addendum d-flex justify-content-center">
+                Manage your info, privacy, and security to make Youtube work better for you.
+            </div>
+        </div>
+    </div>
+    <div class="row nav-buttons p-0">
+        <div class="col p-0 account-information d-flex justify-content-center align-items-center" [ngStyle]="{'background-color': accBGColor}" (click)="accInfoClicked()">
+            <div class="row m-0 p-0">
+                <div class="col-auto icon">
+                    <img class="YPzqGd" [src]="accIcon" width="24px" height="24px">
+                </div>
+                <div class="col text p-0" [ngStyle]="{'color': accFontColor}">
+                    Account information
+                </div>
+            </div>
+        </div>
+        <div class="col p-0 change-password d-flex justify-content-center align-items-center" [ngStyle]="{'background-color': cpBGColor}" (click)="cpClicked()">
+            <div class="row m-0 p-0">
+                <div class="col-auto icon">
+                    <img class="YPzqGd" [src]="cpIcon" width="24px" height="24px">
+                </div>
+                <div class="col text p-0" [ngStyle]="{'color': cpFontColor}">
+                    Change your password
+                </div>
+            </div>
+        </div>
+    </div>
+    <router-outlet></router-outlet>
+</div>

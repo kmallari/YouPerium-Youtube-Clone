@@ -1,0 +1,143 @@
+<div class="robotoFont" infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="150" (scrolled)="onScroll()">
+    <div class="user robotoFont d-flex flex-row align-items-center mb-2 align-items-center ">
+        <p style="color: white !important;;margin:0px">{{numberOfComments.totalNumberOfComments}} Comment<span *ngIf="numberOfComments.totalNumberOfComments != 1">s</span></p>
+        <button class="sortBtn jumbotron vertical-center" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+            <mat-icon [ngStyle]="{'color':'white'}"  class="icon md-icon">sort</mat-icon>
+            <strong>  SORT</strong>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+            <li><a class="dropdown-item py-3" (click)="sortComments('top')">Top Comments</a></li>
+            <li><a class="dropdown-item py-3" (click)="sortComments('new')">Newest First</a></li>
+        </ul>
+    </div>
+
+    <div *ngIf="userData.userId" class="mb-5"  style="width:100%">
+        <div class="user robotoFont d-flex flex-row align-items-center mb-1" style="width:100%">
+            <img src="{{getChannelPicture()}}" width="40" height="40" class="align-top rounded-circle mr-2 me-3">
+            <textarea onInput='this.style.height = "";this.style.height = this.scrollHeight + "px"' (click)="textAreaClicked()" [(ngModel)]="commentVal" maxlength="5000" #commentInput placeholder="Commenting publicly as {{userData.firstName}} {{userData.lastName}}" class="input customInput border-bottom form-control" role="textbox" style="padding:0;white-space: pre-line;white-space: pre-wrap;width:100%" contenteditable ></textarea>
+        </div>
+        <div class="d-flex flex-row-reverse mb-2" *ngIf="showCommentButtons">
+            <button class="commentBtn" [disabled]="commentVal === ''" (click)="saveNewComment(commentInput.value!)">COMMENT</button>
+            <button class="cancelBtnModal" (click)="onCancelComment()">CANCEL</button>
+        </div>
+    </div>
+    <div *ngFor="let comment of listOfComments" class="mb-5" >
+        <div class="user robotoFont d-flex flex-row align-items-center mb-2 justify-content-between" >
+            <div class="d-flex flex-row justify-content-left"  style="width:100%">
+                <img src="{{getPicture(comment.userProfilePicture)}}" width="40" height="40" class="user-img rounded-circle mr-2 me-3">
+                <span style="white-space: pre-line" style="width:100%">
+                    <small style="margin:0;color:#fafafa">{{comment.channelName}} <span style="color: gray; font-size:smaller;">{{moment(comment.commentCreatedAt*1000).fromNow()}}</span><br>
+                        <span [hidden]="editComment===comment.commentId" class="enableMultiLine">
+                            {{comment.commentText}}
+                        </span>
+                    </small><br>
+                    <small *ngIf="editComment===comment.commentId">
+                        <textarea onInput='this.style.height = "";this.style.height = this.scrollHeight + "px"' (click)="editTextAreaClicked()" [(ngModel)]="editValue" maxlength="5000" #editInput placeholder="Commenting publicly as {{userData.firstName}} {{userData.lastName}}" class="input customInput border-bottom form-control" role="textbox" style="padding:0;white-space: pre-line;white-space: pre-wrap;width:100%" contenteditable ></textarea>
+                        <div class="d-flex flex-row-reverse mb-2" *ngIf="showEditButtons">
+                            <button class="commentBtn" [disabled]="editValue === ''" (click)="saveEdit(editInput.value!,comment.commentId,comment,'comment')">SAVE</button>
+                            <button class="cancelBtnModal" (click)="cancelEdit()">CANCEL</button>
+                        </div>
+                    </small>
+                </span>
+            </div>
+            <div class="d-flex flex-row justify-content-right" *ngIf="comment.userId === userData.userId">    
+                <div class="dropdown vertical-center" >
+                    <mat-icon id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" [ngStyle]="{'color':'white'}"  class="pointerCursor icon md-icon">more_vert</mat-icon>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                      <li><a class="dropdown-item" (click)="editButtonClicked(comment.commentId,comment.commentText)"><span> Edit</span></a></li>
+                      <li><a class="dropdown-item" (click)="deleteComment(comment)"><span> Delete</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="user robotoFont d-flex flex-row align-items-center  ms-3 mb-2" style="padding-left:40px;color:#8a8a8a">
+            <mat-icon style="font-size: 20px" [ngStyle]="{color: comment.likedByUser == true ? 'white' : '#8a8a8a'}" (click)="editLike(comment.commentId,comment)" class="pointerCursor icon md-icon me-1">thumb_up</mat-icon>
+            {{comment.commentNetLikes >=0 ? comment.commentNetLikes : 0}}
+            <mat-icon style="font-size: 20px" [ngStyle]="{color: comment.likedByUser == false ? 'white' : '#8a8a8a'}" (click)="editDislike(comment.commentId,comment)"  class="pointerCursor icon md-icon ms-3 me-3">thumb_down</mat-icon>
+            <small class="pointerCursor ms-2" (click)="replyToComment(comment.commentId)">REPLY</small>
+        </div>
+        <div *ngIf="showReplyButton === comment.commentId" class="mb-3">
+            <div class="user robotoFont d-flex flex-row align-items-center mb-1 ms-3" style="padding-left:40px" >
+                <img src="{{getChannelPicture()}}" width="30" height="30" class="align-top rounded-circle mr-2 me-3">
+                <!--<input [(ngModel)]="replyVal" (click)="textAreaReplyClicked()" maxlength="5000" wrap="off" #commentInput placeholder="Commenting publicly as {{userData.firstName}} {{userData.lastName}}" class="input customInput border-bottom form-control" role="textbox" style="padding:0;white-space: pre-line;white-space: pre-wrap;width:100%" contenteditable >-->
+                <textarea onInput='this.style.height = "";this.style.height = this.scrollHeight + "px"' (click)="textAreaReplyClicked()" [(ngModel)]="replyVal" maxlength="5000" #commentInput class="input customInput border-bottom form-control" role="textbox" style="padding:0;white-space: pre-line;white-space: pre-wrap;width:100%" contenteditable ></textarea>
+            </div>
+            <div class="d-flex flex-row-reverse mb-2" *ngIf="showReplyButtons">
+                <button class="commentBtn" [disabled]="replyVal === ''" (click)="saveNewReply(comment.commentId,commentInput.value!,comment)">REPLY</button>
+                <button class="cancelBtnModal" (click)="onCancelReply()">CANCEL</button>
+            </div>
+        </div>
+        <div (click)="getReplies(comment.commentId)" class="user replyDropdown robotoFont d-flex flex-row align-items-center ms-3" style="padding-left:40px;color:#3EA6FF" *ngIf="comment.commentRepliesCount != 0 && showRepliesOfComment!=comment.commentId">
+            <mat-icon class="replyDropdown" [ngStyle]="{'color':'#3EA6FF'}">arrow_drop_down</mat-icon> View {{comment.commentRepliesCount}} 
+            <ng-container *ngIf="comment.commentRepliesCount == 1">reply</ng-container>
+            <ng-container *ngIf="comment.commentRepliesCount != 1">replies</ng-container>
+        </div>
+        <div (click)="hideReplies(comment.commentId)" class="user replyDropdown robotoFont d-flex flex-row align-items-center ms-3" style="padding-left:40px;color:#3EA6FF" *ngIf="comment.commentRepliesCount != 0 && showRepliesOfComment===comment.commentId">
+            <mat-icon class="replyDropdown" [ngStyle]="{'color':'#3EA6FF'}">arrow_drop_up</mat-icon> Hide {{comment.commentRepliesCount}} 
+            <ng-container *ngIf="comment.commentRepliesCount == 1">reply</ng-container>
+            <ng-container *ngIf="comment.commentRepliesCount != 1">replies</ng-container>
+        </div>
+        <div  *ngIf="showRepliesOfComment === comment.commentId">
+            <div *ngFor="let reply of listOfReplies" class="mb-3">
+                <div class="ms-3 mb-2" style="padding-left:40px">
+                    <div class="user robotoFont d-flex flex-row align-items-center mb-2 justify-content-between" >
+                        <div class="d-flex flex-row justify-content-left" style="width:100%">
+                            <img src="{{getPicture(reply.userProfilePicture)}}" width="30" height="30" class="user-img rounded-circle mr-2 me-3">
+                            <span style="display:inline;white-space: pre-wrap" style="width:100%">
+                                <small style="margin:0;color:#fafafa">{{reply.channelName}} <span style="color: gray; font-size:smaller;">{{moment(reply.commentCreatedAt*1000).fromNow()}}</span><br>
+                                <span [hidden]="editComment===reply.commentId" class="enableMultiLine">{{reply.commentText}}</span></small><br>
+                                <small *ngIf="editComment===reply.commentId">
+                                    <!--<input [(ngModel)]="replyVal" (click)="textAreaReplyClicked()" maxlength="5000" wrap="off" #replyEditInput class="input customInput border-bottom form-control" role="textbox" style="padding:0;width:100%" contenteditable >-->
+                                    <textarea onInput='this.style.height = "";this.style.height = this.scrollHeight + "px"' (click)="textAreaReplyClicked()" [(ngModel)]="replyVal" maxlength="5000" #replyEditInput class="input customInput border-bottom form-control" role="textbox" style="padding:0;white-space: pre-line;white-space: pre-wrap;width:100%" contenteditable ></textarea>
+                                    <div class="d-flex flex-row-reverse mb-2" *ngIf="showReplyButtons">
+                                        <button class="commentBtn" [disabled]="replyVal === ''" (click)="saveEdit(replyEditInput.value!,reply.commentId,reply,'reply')">SAVE</button>
+                                        <button class="cancelBtnModal" (click)="onCancelReply()">CANCEL</button>
+                                    </div>
+                                </small>
+
+
+                            </span>  
+                              
+                        </div>
+            
+
+                        <div class="d-flex flex-row justify-content-right" *ngIf="reply.userId === userData.userId">    
+                            <div class="dropdown vertical-center" >
+                                <mat-icon id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" [ngStyle]="{'color':'white'}"  class="pointerCursor con md-icon">more_vert</mat-icon>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                  <li><a class="dropdown-item" (click)="editButtonClicked(reply.commentId,reply.commentText)"><span> Edit</span></a></li>
+                                  <li><a class="dropdown-item" (click)="deleteReply(reply,comment)"><span> Delete</span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    
+                    </div>
+                    <div class="user robotoFont d-flex flex-row align-items-center  ms-2 mb-2" style="padding-left:40px;color:#8a8a8a">
+                        <mat-icon style="font-size: 20px" [ngStyle]="{color: reply.likedByUser == true ? 'white' : '#8a8a8a'}" (click)="editReplyLike(reply.commentId,reply)" class="pointerCursor icon md-icon me-1">thumb_up</mat-icon>
+                        {{reply.commentNetLikes >=0 ? reply.commentNetLikes : 0}}
+                        <mat-icon style="font-size: 20px" [ngStyle]="{color: reply.likedByUser == false ? 'white' : '#8a8a8a'}" (click)="editReplyDislike(reply.commentId,reply)"  class="icon md-icon ms-2 me-3">thumb_down</mat-icon>
+                        <small class="ms-2 pointerCursor" (click)="replyToReply(reply.commentId,reply.channelName)">REPLY</small>
+                    </div>
+
+                    <div *ngIf="showReplyButton === reply.commentId" class="mb-3">
+                        <div class="user robotoFont d-flex flex-row align-items-center mb-1 ms-3" style="padding-left:40px" >
+                            <img src="{{getChannelPicture()}}" width="30" height="30" class="align-top rounded-circle mr-2 me-3">
+                            <!--<input [(ngModel)]="replyVal" (click)="textAreaReplyClicked()" maxlength="5000" wrap="off" #commentInput placeholder="Commenting publicly as {{userData.firstName}} {{userData.lastName}}" class="input customInput border-bottom form-control" role="textbox" style="padding:0;white-space: pre-line;white-space: pre-wrap;width:100%" contenteditable >-->
+                            <textarea onInput='this.style.height = "";this.style.height = this.scrollHeight + "px"' (click)="textAreaReplyClicked()" [(ngModel)]="replyVal" maxlength="5000" #commentInput class="input customInput border-bottom form-control" role="textbox" style="padding:0;white-space: pre-line;white-space: pre-wrap;width:100%" contenteditable ></textarea>
+                        </div>
+                        <div class="d-flex flex-row-reverse mb-2" *ngIf="showReplyButtons">
+                            <button class="commentBtn" [disabled]="replyVal === ''" (click)="saveNewReply(comment.commentId,commentInput.value!,comment)">REPLY</button>
+                            <button class="cancelBtnModal" (click)="onCancelReply()">CANCEL</button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+

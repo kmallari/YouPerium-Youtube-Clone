@@ -1,0 +1,77 @@
+<div class="robotoFont playlist-sidepanel mx-lg-0 me-lg-4 mb-4">
+  <div class="p-3 d-flex flex-column gap-1 panel-header">
+    <h5 class="text-white playlist-title">{{ playlistData.title }}</h5>
+    <span class="publisher"
+      >{{ playlistData.creatorChannelName }} -
+      {{ playlistData.numberOfVideos }} total videos</span
+    >
+
+  </div>
+  <div>
+    <ul class="list-container">
+      <li
+        *ngFor="let video of videos; let i = index"
+        [attr.data-index]="i"
+        class="w-100 h-100 d-flex flex-row align-items-center justify-content-between py-1 single-video {{
+          currentVideoId === video.videoId ? 'active' : ''
+        }}"
+      >
+        <a
+          [routerLink]="'/watch'"
+          [queryParams]="{ v: video.videoId, list: playlistId }"
+        >
+          <span class="d-flex flex-row justify-content-center px-2 index">{{
+            i + 1
+          }}</span>
+        </a>
+        <div class="d-flex flex-row align-items-center gap-1 w-100">
+          <a
+            class="card-icon"
+            [routerLink]="'/watch'"
+            [queryParams]="{ v: video.videoId, list: playlistId }"
+          >
+            <img
+              src="{{ video.videoThumbnailUrl }}"
+              alt="{{ video.videoTitle }} thumbnail"
+              class="thumbnail"
+            />
+            <div class="bottom-right-default">
+              {{
+                formatDuration(video.videoDuration).substring(0, 2) == "00"
+                  ? formatDuration(video.videoDuration).substring(3)
+                  : formatDuration(video.videoDuration)
+              }}
+            </div>
+          </a>
+          <a
+            class="d-flex flex-column gap-1"
+            [routerLink]="'/watch'"
+            [queryParams]="{ v: video.videoId, list: playlistId }"
+          >
+            <h5 class="video-title">
+              {{ video.videoTitle }}
+            </h5>
+            <span class="channel-name">{{ video.videoChannelName }}</span>
+          </a>
+        </div>
+        <div
+          class="card-options dropdown pe-lg-0 pe-3"
+          id="dropMenu"
+          data-bs-toggle="dropdown"
+        >
+          <button *ngIf="loggedInUserId === playlistData.creatorId">
+            <mat-icon class="more-icon">more_vert</mat-icon>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropMenu">
+            <li class="drop-item">
+              <button (click)="removeVideoFromPlaylist(video.videoId)">
+                <mat-icon class="icon">delete_forever</mat-icon> Remove from
+                playlist
+              </button>
+            </li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,139 @@
+
+
+
+
+<div class="row robotoFont" style="margin: auto" infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="150" (scrolled)="onScroll()">
+    <!--<div class="col-lg-2 g-0" style="height:94vh;background-color:#212121;"></div>-->
+    <div class="col-lg-4 g-0" style="color: white; background-color:#181818;">
+        <div class="container pt-5 px-5 pb-5">
+
+            <img class="playlistPhoto" src="{{playlistData.thumbnailUrl}}" style="width:100%; position:relative">
+
+            <div class="my-3 d-flex flex-row justify-content-between vertical-center" *ngIf="!editTitle">
+                <p style="font-size:30px;padding:0;font-weight: bold;margin:0">{{playlistData.title}}</p>
+                <mat-icon data-toggle="tooltip" data-placement="bottom" title="Edit Title" [ngStyle]="{'color':'white'}"  (click)="editPlaylistData('title')" class="icon md-icon">edit</mat-icon>
+            </div>
+
+            <div class="mt-3" *ngIf="editTitle">
+                <input  #titleInput class="input customInput border-bottom form-control" style="font-size:30px;padding:0;font-weight: bold;" role="textbox" [(ngModel)]="playlistTitle" contenteditable>
+                <div style="text-align:right">
+                    <button class="btn cancelBtn" (click)="cancelNewPlaylistData('title')">CANCEL</button>
+                    <button class="btn saveBtn" [disabled]="playlistTitle === ''" (click)="saveNewPlaylistData('title',titleInput.value)">SAVE</button>
+                </div>
+            </div>
+
+            <p>{{videoLen}} videos • Updated {{lastEdited}}</p>
+            <div style="margin: 0" class="mb-3">
+                <mat-icon class="icon me-3" (click)="goToVideo('playButton','')">play_circle_outline</mat-icon> <mat-icon data-bs-toggle="modal" data-bs-target="#deleteModal" class="icon">delete</mat-icon>
+            </div>
+            
+            
+            
+            <div class="d-flex flex-row justify-content-between" *ngIf="!editDescription">
+                <p  style="display:inline;white-space: pre-wrap">{{playlistData.description}}</p>
+                <mat-icon data-toggle="tooltip" data-placement="bottom" title="Edit Description" [ngStyle]="{'color':'white'}" (click)="editPlaylistData('description')" class="icon md-icon">edit</mat-icon>
+                
+            </div>
+             
+            <div *ngIf="editDescription">
+                
+                <textarea maxlength="5000" #descriptionInput class="input customInput border-bottom form-control" role="textbox" style="padding:0;white-space: pre-line;white-space: pre-wrap;" contenteditable>{{playlistData.description}}</textarea>
+                
+                <div style="text-align:right">
+                    <button class="btn cancelBtn" (click)="cancelNewPlaylistData('description')">CANCEL</button>
+                    <button class="btn saveBtn" (click)="saveNewPlaylistData('description',descriptionInput.value!)">SAVE</button>
+                </div>
+            </div>
+            
+        </div>
+        <div class="container">
+            
+        </div>
+
+        
+    </div>
+    <div class="col-lg-8 g-0" style="color: white; background-color:#0F0F0F;">
+        <div  class="pt-5 pb-2 mx-5">
+            <button class="sortBtn" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                <mat-icon [ngStyle]="{'color':'white'}"  class="icon md-icon">sort</mat-icon>
+                <strong>  SORT</strong>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                <li><a class="dropdown-item py-3" (click)="sortVideos('addedAtDesc')">Date added (newest)</a></li>
+                <li><a class="dropdown-item py-3" (click)="sortVideos('addedAtAsc')">Date added (oldest)</a></li>
+                <li><a class="dropdown-item py-3" (click)="sortVideos('popularity')">Most popular</a></li>
+                <li><a class="dropdown-item py-3" (click)="sortVideos('createdAtDesc')">Date published (newest)</a></li>
+                <li><a class="dropdown-item py-3" (click)="sortVideos('createdAtAsc')">Date published (oldest)</a></li>
+                <li><a class="dropdown-item py-3" (click)="sortVideos('custom')">Custom</a></li>
+            </ul>
+        </div>
+        <div >
+            <div class="scroll" cdkDropList (cdkDropListDropped)="drop($event)" >
+                <div class="px-5 vidComp example-box" *ngFor="let video of videoList" cdkDrag [cdkDragDisabled]="sortBy !=='custom'">
+                
+                    <div class=" border-bottom border-secondary">
+                        <div class="d-flex flex-row justify-content-between">
+                            <div class="d-flex flex-row justify-content-left py-3">
+                                <div class="vertical-center reorderIcon" *ngIf="sortBy==='custom'">
+                                    <mat-icon [ngStyle]="{'color':'white'}"  class="icon md-icon reorderIcon" cdkDragHandle>reorder</mat-icon>
+                                </div>
+                                <div class="mx-3 imgContainer" (click)="goToVideo(video.videoId,video.playlistId)" >
+                                    <img class="videoPhoto" src="{{video.videoThumbnailUrl}}">
+                                    <!--<img src="{{video.videoThumbnailUrl}}" style="height:80px; position:relative">-->
+                                    <!-- conversion assumes that videoDuration is in seconds-->
+                                    <div class="bottom-right">{{video.videoDuration * 1000 | date:'mm:ss'}}</div>
+                                </div>
+                                <div class="" (click)="goToVideo(video.videoId,video.playlistId)">
+                                    <p><strong>{{video.videoTitle}}</strong></p>
+                                    <p class="creatorStyle">{{video.videoChannelName}}</p>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-row justify-content-right" >
+                                    
+                                <div class="dropdown vertical-center" >
+                                    
+                                    <mat-icon id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" [ngStyle]="{'color':'white'}"  class="icon md-icon">more_vert</mat-icon>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" (click)="getVideoData(video)" data-bs-toggle="modal" data-bs-target="#playlistModal"><span> <mat-icon class="icon">playlist_add</mat-icon> Save to playlist </span></a></li>
+                                    <li *ngIf="loggedInUserId === this.playlistData.creatorId"><a class="dropdown-item" (click)="removeVideo(video)"><span> <mat-icon class="icon">delete</mat-icon> Remove from {{playlistData.title}} </span></a></li>
+                                    <li><a class="dropdown-item" (click)="setPlayListThumbnail(video.videoThumbnailUrl)"><span> <mat-icon class="icon">image</mat-icon> Set as playlist thumbnail </span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<app-playlist-modal [userData]="userData"></app-playlist-modal>
+
+    
+
+
+  
+<!-- Modal -->
+<div class="modal robotoFont fade" id="deleteModal" tabindex="-1" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded-0">
+    <div class="modal-body">
+        <div class="container">
+            <p>Delete Playlist</p>
+            <p style="color:gray;font-size:small">Are you sure you want to delete {{playlistData.title}}?</p>
+            <p style="color:gray;font-size:small">
+                Note: Deleting playlists is a permanent action and cannot be undone.
+            </p>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn cancelBtnModal" data-bs-dismiss="modal">CANCEL</button>
+        <button type="button" class="btn deleteBtn" (click)="deletePlaylist()">DELETE</button>
+    </div>
+    </div>
+</div>

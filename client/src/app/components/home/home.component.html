@@ -1,0 +1,9 @@
+
+
+
+<div infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="150" (scrolled)="onScroll()">
+  <app-category-list (clicked)="categoryClicked($event)"></app-category-list>
+  <app-videos-grid [videos]="videos" type="home"></app-videos-grid>
+</div>
+
+<app-playlist-modal></app-playlist-modal>

@@ -1,0 +1,131 @@
+<div *ngIf="user" class="dashboard-wrapper">
+    <div class="row m-0 p-0 dashboard-header">
+        <div class="col-auto header-title">
+            <h1>Channel dashboard</h1>
+        </div>
+        <div class="col-auto p-0 upload-icon d-flex justify-content-center align-items-center" data-bs-toggle="modal" data-bs-target="#uploadModal">
+            <svg width="24px" height="24px">
+                <g transform="translate(5 3)" class="style-scope tp-yt-iron-icon"><path d="M4 13h6V7h4L7 0 0 7h4z" fill="#909090" fill-rule="evenodd" class="style-scope tp-yt-iron-icon"></path><path d="M0 15h14v2H0z" fill="#f00" fill-rule="evenodd" class="style-scope tp-yt-iron-icon"></path></g>
+            </svg>
+        </div>
+    </div>
+    <div class="row m-0 dashboard-body">
+        <div class="col video-snapshot-upload main-container">
+            <div class="row inside-rect">
+                <div class="col upload-items my-auto">
+                    <div class="row m-0 p-0 main-upload-image d-flex justify-content-center">
+                        <img id="upload-illustration" alt="" class="style-scope ytcd-video-snapshot-upload" src="https://www.gstatic.com/youtube/img/creator/no_content_illustration_upload_video_v3_darkmode.svg">
+                    </div>
+                    <div class="row m-0 p-0 main-upload-text-1 d-flex justify-content-center">
+                        Want to see metrics on your recent video?
+                    </div>
+                    <div class="row m-0 p-0 main-upload-text-2 d-flex justify-content-center">
+                        Upload and publish a video to get started.
+                    </div>
+                    <div class="row main-upload-button btn btn-primary d-flex justify-content-center mx-auto" data-bs-toggle="modal" data-bs-target="#uploadModal">
+                        UPLOAD VIDEOS
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col channel-analytics-container">
+            <div class="row m-0 analytics-header">
+                Channel analytics
+            </div>
+            <div class="row m-0 subscribers-count">
+                <div class="col p-0">
+                    <div class="row m-0 p-0 subscribers-count-heading">
+                        Current subscribers
+                    </div>
+                    <div class="row m-0 p-0 subscribers-count-numbers">
+                        {{user.subscribersCount}}
+                    </div>
+                </div>
+            </div>
+            <div class="row m-0 summary-container">
+                <div class="col p-0">
+                    <div class="row m-0 p-0 summary-text">
+                        Summary
+                    </div>
+                    <div class="row m-0 p-0 last-days">
+                        from account creation
+                    </div>
+                </div>
+            </div>
+            <div class="row m-0 views-related">
+                <div class="col p-0">
+                    <div class="row m-0 p-0 views justify-content-between">
+                        <div class="col-auto p-0 views-text">
+                            Views
+                        </div>
+                        <div class="col-auto p-0 views-count">
+                            {{displayViews(user.totalViews)}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row m-0 summary-container">
+                <div class="col p-0">
+                    <div class="row m-0 p-0 summary-text">
+                        Top videos
+                    </div>
+                    <div class="row m-0 p-0 last-days">
+                        last 48 hours • views
+                    </div>
+                </div>
+            </div>
+
+            <div *ngFor="let video of videos" class="row top-videos">
+                <div class="col p-0">
+                    <div class="row m-0 p-0 views justify-content-between">
+                        <div class="col p-0 video-text">
+                            {{video.videoTitle}}
+                        </div>
+                        <div class="col-auto p-0 video-count">
+                            {{displayViews(video.videoTotalViews)}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col creator-insider-container">
+            <div class="row m-0 header justify-content-between">
+                <div class="col-auto p-0 header-text">
+                    Creator Insider
+                </div>
+                <div class="col-auto p-0 header-nav">
+                    <div class="row m-0 p-0">
+                        <div class="col-auto p-0 left-angle" (click)="leftClick()">
+                            &#9001;
+                        </div>
+                        <div class="col-auto mx-3 p-0 page-number">
+                            {{page + 1}} / 2
+                        </div>
+                        <div class="col-auto p-0 right-angle" (click)="rightClick()">
+                            &#9002;
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row m-0 p-0 content">
+                <div class="col p-0">
+                    <div class="row m-0 p-0 image-container">
+                        <img [src]="creatorInsider[page].imgsrc">
+                    </div>
+                    <div class="row m-0 content-title">
+                        {{creatorInsider[page].title}}
+                    </div>
+                    <div class="row m-0 content">
+                        {{creatorInsider[page].content}}
+                    </div>
+                </div>
+            </div>
+            <div class="row m-0 youtube-anchor">
+                <a class="p-0" [href]="creatorInsider[page].reference">
+                    WATCH ON YOUTUBE
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

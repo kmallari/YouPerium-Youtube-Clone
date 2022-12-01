@@ -1,0 +1,37 @@
+<div class="modal-header">
+    <h1>Email</h1>
+</div>
+<div class="modal-body">
+    <div class="row message">
+        The address used to identify your Youtube Account to you and others.
+    </div>
+    <form class="form input-fields">
+        <div class="form-floating email-input">
+            <input 
+                name = "email"
+                type="email" 
+                class="form-control" 
+                id="floatingEmail" 
+                placeholder="Password"
+                [formControl]="userEmail"
+                [class.is-invalid]="userEmail.invalid"
+                [class.is-valid]="userEmail.valid && userEmail.value !== ''"
+                [class.useremail-exists]="user_exists('email')"
+                [class.invalid-email]="invalid_input('email')">
+            <label for="floatingEmail">New email address</label>
+            <div class="email-exists error-message m-0">
+                Email has already been taken.
+            </div>
+            <div class="email-invalidated error-message m-0">
+                invalid email
+            </div>
+        </div>
+        <div class="col d-flex justify-content-end">
+            <button 
+                (click)="onSaveClicked()" 
+                class="btn btn-primary save-button" [disabled]="disabler()">
+                Save
+            </button>
+        </div>
+    </form>
+</div>

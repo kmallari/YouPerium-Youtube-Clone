@@ -1,0 +1,23 @@
+/*********************** Sidebar Adjustment ***************************/
+
+.push-true {
+    width: calc(100% - 240px) !important;
+    margin-left: 240px;    
+    transition: width .3s ease, margin-left .3s ease;
+}
+
+.push-false {
+    width: calc(100% - 70px) !important;
+    margin-left: 70px;
+    transition: width .2s ease, margin-left .2s ease;
+}
+
+.over-true {
+    width: 100% !important;
+    margin-left: 0px;
+}
+
+
+.show-false {
+    display: none;
+}

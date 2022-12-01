@@ -1,0 +1,13 @@
+<div class="channel-card " *ngFor="let channel of channels">
+    <div class="d-flex flex-row card-body"  >
+        <a class="card-icon" [routerLink]="['/c', channel.channelName]">
+            <img [src]="getPicture(channel.userProfilePicture)" class="profile-icon" (error)="changeSource($event)"/>
+        </a>
+        <a class="card-text" [routerLink]="['/c', channel.channelName]">
+            <p class="video-card-title ">{{ channel.channelName }}</p>
+            <p class="video-card-subtitle" >  {{ displaySubs( channel.subscribersCount ) }} • {{ displayViews( channel.totalViews ) }} </p>
+            <p class="video-card-subtitle"> {{ channel.channelDescription }} </p> 
+        </a>
+        
+    </div>
+</div>

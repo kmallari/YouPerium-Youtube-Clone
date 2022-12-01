@@ -1,0 +1,82 @@
+.channel-container {
+    min-width: 280px;
+    align-items: center;
+}
+.channel-profile {
+    margin-right: 24px;
+}
+@media (max-width: 560px) {
+    .channel-profile {
+        width: 48px !important;
+        height: 48px !important;
+        margin-right: 12px;
+    }
+}
+
+.channel-profile-image{
+    border: 1px solid #918f8f;
+}
+@media (max-width: 560px) {
+    .channel-profile-image {
+        width: 48px !important;
+        height: 48px !important;
+    }
+}
+
+.channel-profile-image:hover {
+    cursor: pointer;
+}
+
+.channel-content {
+    width: calc(100% - 104px);
+}
+
+.contents-row {
+    height: 100%;
+}
+
+.channel-name {
+    font-size: 1.9em;
+    color: white;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+@media (max-width: 560px) {
+    .channel-name {
+        font-size: 1.0em !important;
+    }
+}
+
+.channel-name:hover {
+    cursor: pointer;
+}
+
+.subscribe-count {
+    font-size: 1rem;
+    color: #949494;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+@media (max-width: 560px) {
+    .subscribe-count {
+        font-size: 0.8em !important;
+    }
+}
+
+.subscribe-button {
+    width: 120px;
+    height: 37px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+}
+@media (max-width: 560px) {
+    .subscribe-button {
+        width: 90px;
+        height: 37px;
+        font-size: 0.8rem;
+        font-weight: 500;
+    }
+}

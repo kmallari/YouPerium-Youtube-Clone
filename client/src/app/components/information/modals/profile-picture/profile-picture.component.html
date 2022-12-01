@@ -1,0 +1,25 @@
+<div class="modal-header">
+    <h1>Profile Picture</h1>
+</div>
+<div class="modal-body">
+    <div class="row message">
+        A picture helps people recognize you and lets you know when you’re signed in to your account
+    </div>
+    <div class="row image">
+        <img [src]="imgSrc" (error)="changeSource($event)" class="image-itself">
+    </div>
+    <ngx-file-drop [multiple]="false" dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)" accept="image/*">
+        <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+          <button type="button" class="upload-button" (click)="openFileSelector()">Upload</button>
+        </ng-template>
+    </ngx-file-drop>
+    <div class="row p-0 button">
+        <div class="col d-flex justify-content-center">
+            <button 
+                (click)="onSaveClicked()" 
+                class="btn btn-primary save-button" [disabled]="disabler()">
+                Save
+            </button>
+        </div>
+    </div>
+</div>

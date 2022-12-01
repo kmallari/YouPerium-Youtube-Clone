@@ -1,0 +1,171 @@
+.vidComp:hover{
+    background-color: #272727 !important;
+    cursor: pointer;
+}
+.example-box {
+
+    flex-direction: row;
+    align-items: center;
+    box-sizing: border-box;
+    background-color: #0F0F0F;
+  }
+
+  .vertical-center {
+    min-height: 100%;
+  
+    display: flex;
+    align-items: center;
+  }
+
+  .mat-icon {
+    vertical-align: middle;
+}
+
+.dropdown-menu { 
+    background-color: #272727 !important; 
+    color: #fafafa !important;
+}
+.dropdown-menu:hover{
+    cursor:pointer;
+}
+.dropdown-item { 
+    background-color: #272727 !important; 
+    color: #fafafa !important;
+    padding-bottom: 7px;
+    padding-top:7px;
+}
+
+.dropdown-item:hover { 
+    background-color: #383838 !important; 
+    color: #fafafa !important;
+    cursor:pointer;
+}
+.customInput{
+    background-color: #181818;
+    border: 0;
+    color: #fafafa;
+    border-radius:0px !important;
+}
+input:focus, textarea:focus, select:focus{
+    outline: none;
+    border-radius:0px !important;
+}
+.cancelBtn{
+    background-color: #181818;
+    border: 0;
+    color: #fafafa;
+    margin: 5px;
+    font-weight: bold;
+}
+.saveBtn{
+    background-color: #181818;
+    border: 0;
+    color: #3EA6F8;
+    margin: 5px;
+    font-weight: bold;
+}
+.sortBtn{
+    background-color: #0F0F0F;
+    border: 0;
+    color: #fafafa;
+    margin: 5px;
+    font-weight: bold;
+}
+.form-control:focus {
+    box-shadow: none;
+    border-radius:0px !important;
+  }
+
+.reorderIcon:hover{
+    cursor:grab;
+}
+.icon{
+    cursor: pointer;
+}
+.scroll {
+
+    width: 100%;
+    min-height:84vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align:justify;
+}
+.bottom-right {
+    position: absolute;
+    top:51px;
+    right: 3px;
+    font-size: 75%;
+    background-color: black;
+    padding:3px;
+  }
+  .imgContainer {
+    position: relative;
+    text-align: center;
+    color: white;
+  }
+  .creatorStyle{
+    font-size: 85%;
+    color: gray;
+
+  }
+
+
+/****/
+
+textarea {
+    resize: none;
+    overflow: hidden;
+    min-height: 50px;
+    max-height: 100px;
+}
+
+
+/***Modal**/
+
+.modal-content {
+    background: #212121;
+    color: #fafafa;
+    width: 500px;
+    margin: auto;
+  }
+.modal-header{
+    border-color: #383838;
+}
+.modal-body{
+    border-color: #383838;
+}
+.modal-footer{
+    border-color: #383838;
+}
+.cancelBtnModal{
+    background-color: #212121;
+    border: 0;
+    color: #fafafa;
+    margin: 3px;
+    font-weight: bold;
+}
+.deleteBtn{
+    background-color: #212121;
+    border: 0;
+    color: #3EA6F8;
+    margin: 3px;
+    font-weight: bold;
+}
+.customInputModal{
+    background-color: #212121;
+    border: 0;
+    color: #fafafa;
+    border-radius:0px !important;
+}
+.videoPhoto{
+    width: 140px;
+    aspect-ratio: 16/9;
+    height: auto;
+    object-fit: cover;
+    position:relative
+}
+.playlistPhoto{
+    aspect-ratio: 16/9;
+    height: auto;
+    object-fit: cover;
+}

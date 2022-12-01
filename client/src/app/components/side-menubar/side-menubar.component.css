@@ -1,0 +1,59 @@
+.offcanvas {
+    max-width: 240px;
+    transition: 0.5s;
+    background-color: #202020;
+    outline: none;
+    border: none;
+    display: flex;
+	align-items: center;
+}
+
+.bigbar {
+	margin-top: 58px;
+}
+
+.minibar {
+	max-width: 70px;	
+}
+
+.icon {
+	cursor: pointer;
+	vertical-align: middle;
+	color: white;
+	margin: auto;
+	justify-content: center; 
+	display: flex;
+}
+
+.header-2 {
+	height: 58px;
+	padding-top: 17px !important;
+}
+
+.logo {
+	height: 21px;
+	margin-left: 20px;
+	cursor: pointer;
+	border: none;
+	margin-right: 60px;
+}
+
+.logo:focus {
+	outline: none;
+}
+
+.offcanvas-header {
+    display: flex;
+	align-items: left;
+    padding: 20px 0px;
+}
+
+.unShow-false {
+	visibility: visible;
+	transition: visibility 0s;
+}
+.unShow-true {
+	visibility: hidden;
+	transition: visibility 0s;
+}
+

@@ -1,0 +1,42 @@
+version: "3"
+
+services:
+    angular_app:
+        build: ./client
+        ports:
+            - 4200:4200
+        volumes:
+            - ./client/:/ng-app
+
+    express_app:
+        build: ./server
+        ports:
+            - 3000:3000
+        volumes:
+            - ./server/:/app
+        environment:
+            - DB_NAME=ytclone
+            - DB_HOST=db_server
+            - DB_PORT=3306
+            - DB_USER=root
+            - DB_PASSWORD=password
+            - JWT_SECRET=DFM312JUX09Q234NA
+        depends_on:
+            - db_server
+        command: "bash start.sh db_server:3306"
+
+    db_server:
+        image: mysql:5.7
+        ports:
+            - "3306:3306"
+        environment:
+            - MYSQL_ROOT_PASSWORD=password
+            - MYSQL_DATABASE=ytclone
+
+    redis:
+        image: redis
+        ports:
+            - "6379:6379"
+
+
+

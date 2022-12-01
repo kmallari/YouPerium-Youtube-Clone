@@ -1,0 +1,18 @@
+<div class="offcanvas offcanvas-start minibar {{smallBar}} unShow-{{backdrop}}" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="minibar">
+	<div class="offcanvas-header header-2">
+        <mat-icon class="icon" type="button" (click)="onToggle()">menu</mat-icon>
+	</div>
+    <app-sidebar-content content="mini"></app-sidebar-content>
+</div>
+
+<div class="offcanvas offcanvas-start bigbar {{bigBar}} unShow-{{backdrop}}" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="bigbar">
+    <app-sidebar-content content="big"></app-sidebar-content>
+</div>
+
+<div class="offcanvas offcanvas-start" data-bs-scroll="false" data-bs-backdrop="true" tabindex="-1" id="sidebar">
+	<div class="offcanvas-header">
+        <mat-icon class="icon" type="button" data-bs-dismiss="offcanvas" aria-label="Close">menu</mat-icon>
+        <img (click)="destroySidebar()" data-bs-dismiss="offcanvas" class="logo" [src]="tempLogo" alt="youtube logo"/>
+	</div> 
+    <app-sidebar-content content="big"></app-sidebar-content>
+</div>

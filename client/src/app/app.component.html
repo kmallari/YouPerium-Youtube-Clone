@@ -1,0 +1,15 @@
+<app-header *ngIf="showHeader"></app-header>
+<app-side-menubar class="show-{{showHeader}}" 
+    [onBackdrop]="backdrop.asObservable()" 
+    [onShow]="show.asObservable()" 
+    (toggle)="onToggle()" 
+    (ready)="onReady()"></app-side-menubar>
+
+<div *ngIf="!watchScreen">
+    <div class="adjuster push-{{sidebarOn}} over-{{smallScreen}}" *ngIf="showHeader" >
+        <router-outlet></router-outlet>
+    </div>
+</div>
+
+<router-outlet *ngIf="!showHeader" ></router-outlet>
+<router-outlet *ngIf="watchScreen" ></router-outlet>

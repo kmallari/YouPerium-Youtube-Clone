@@ -1,0 +1,65 @@
+<div class="wrapper d-flex justify-content-center align-items-center">
+    <div class="row m-0">
+        <div class="col m-0">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row m-0 align-items-center">
+                        <div class="col p-0 d-flex justify-content-center">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/YouTube_play_button_icon_%282013%E2%80%932017%29.svg/1280px-YouTube_play_button_icon_%282013%E2%80%932017%29.svg.png" height="24px">
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <div class="row m-0 p-0">
+                        <div class="sign-in">
+                            Sign in
+                        </div>
+                        <div class="sign-in-message">
+                            to continue to Youtube
+                        </div>
+                    </div>
+                    <form class="form input-fields">
+                        <div class="form-floating my-4 username-input">
+                            <input 
+                                name ="username"
+                                type="username" 
+                                class="form-control" 
+                                id="floatingUsername" 
+                                placeholder="syyan"
+                                [formControl]="userNameEmail">
+                            <label for="floatingUsername">Username or Email</label>
+                        </div>
+                        <div class="form-floating my-4 password-input">
+                            <input 
+                                name = "password"
+                                minlength="8"
+                                maxlength="120"
+                                required
+                                type="password" 
+                                class="form-control" 
+                                id="floatingPassword" 
+                                placeholder="Password"
+                                [formControl]="password">
+                            <label for="floatingPassword">Password</label>
+                        </div>
+                    </form>
+                    <div class="row m-0 d-flex justify-content-between mt-auto account-buttons">
+                        <div class="col-auto p-0 d-flex justify-content-center align-items-center">
+                            <div class="create-account-btn px-2 d-flex align-items-center" (click)="createAccountClicked()">
+                                Create account
+                            </div>
+                        </div>
+                        <div class="col-auto p-0">
+                            <button 
+                                (click)="signIn()" 
+                                class="btn btn-primary login-button" 
+                                [disabled]="(password.value === null || userNameEmail.value === null) || (password.value.length === 0 || userNameEmail.value.length === 0)">
+                                Log in
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
